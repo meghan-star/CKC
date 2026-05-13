@@ -29,13 +29,13 @@ Upload the entire `crystalkittyclub-site` folder contents to the repo root:
 ├── sitemap.xml
 ├── robots.txt
 └── images/
-    ├── opal-rainbow.jpg
-    ├── diamond-palace.jpg
-    ├── crystal-throne.jpg
-    ├── moonlit-pearl.jpg
-    ├── cosmic-moon.jpg
-    ├── pink-cloud.jpg
-    └── emerald-forest.jpg
+    ├── opal-rainbow.png
+    ├── diamond-palace.png
+    ├── crystal-throne.png
+    ├── moonlit-pearl.png
+    ├── cosmic-moon.png
+    ├── pink-cloud.png
+    └── emerald-forest.png
 ```
 
 **Image naming is exact — filenames must match exactly as listed above.**
@@ -102,13 +102,13 @@ Google should index within 1–4 weeks. The sitemap and robots.txt are already s
 
 When you have new cat images to add:
 
-1. Save the image as a lowercase, hyphenated filename (e.g., `amethyst-throne.jpg`)
+1. Save the image as a lowercase, hyphenated filename (e.g., `amethyst-throne.png`)
 2. Upload to the `images/` folder in your GitHub repo
 3. In `gallery.html`, find the comment block `<!-- Add new gallery items here -->` and add:
 
 ```html
 <div class="gallery-item">
-  <img src="images/amethyst-throne.jpg" alt="Amethyst Throne Queen — [describe the image]" loading="lazy">
+  <img src="images/amethyst-throne.png" alt="Amethyst Throne Queen — [describe the image]" loading="lazy">
   <span class="gallery-label">Amethyst Throne</span>
 </div>
 ```
