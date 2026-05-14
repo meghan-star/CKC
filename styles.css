@@ -375,6 +375,58 @@ body {
   text-transform: uppercase;
 }
 
+/* Gallery hover overlay (gallery.html full page only) */
+.gallery-overlay {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: linear-gradient(to top, rgba(9,9,26,0.97) 0%, rgba(9,9,26,0.8) 50%, transparent 100%);
+  padding: 4rem 1rem 0.9rem;
+  transform: translateY(calc(100% - 2.4rem));
+  transition: transform 0.38s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  pointer-events: none;
+}
+.gallery-item:hover .gallery-overlay {
+  transform: translateY(0);
+}
+.gallery-overlay-gem {
+  font-family: var(--font-heading);
+  font-size: 0.58rem;
+  letter-spacing: 0.18em;
+  color: var(--gold);
+  text-transform: uppercase;
+  margin: 0 0 0.3rem;
+  opacity: 0;
+  transform: translateY(7px);
+  transition: opacity 0.2s ease 0.14s, transform 0.2s ease 0.14s;
+}
+.gallery-item:hover .gallery-overlay-gem {
+  opacity: 1;
+  transform: translateY(0);
+}
+.gallery-overlay-name {
+  font-family: var(--font-heading);
+  font-size: 0.75rem;
+  letter-spacing: 0.1em;
+  color: var(--gold-light);
+  text-transform: uppercase;
+  margin: 0 0 0.5rem;
+}
+.gallery-overlay-personality {
+  font-size: 0.8rem;
+  color: rgba(255,255,255,0.72);
+  line-height: 1.55;
+  margin: 0;
+  opacity: 0;
+  transform: translateY(7px);
+  transition: opacity 0.2s ease 0.2s, transform 0.2s ease 0.2s;
+}
+.gallery-item:hover .gallery-overlay-personality {
+  opacity: 1;
+  transform: translateY(0);
+}
+
 @media (max-width: 640px) {
   .gallery-grid { grid-template-columns: repeat(2, 1fr); gap: 0.75rem; }
 }
