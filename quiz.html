@@ -3,17 +3,424 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Draw Your Card — Crystal Kitty Club</title>
-  <meta name="description" content="Which gemstone cat is your familiar? Draw your card — 12 crystal queens, one was chosen for you. Find your gem familiar at Crystal Kitty Club.">
+  <title>Find Your Familiar — Crystal Kitty Club</title>
+  <meta name="description" content="Which gem queen claims you? Eight questions. One crystal familiar. She's already been decided.">
   <link rel="canonical" href="https://crystalkittyclub.com/quiz.html">
-  <meta property="og:title" content="Draw Your Card — Crystal Kitty Club">
-  <meta property="og:description" content="Twelve queens guard the crystal palace. One was chosen for you before you were born. Draw your card.">
+  <meta property="og:title" content="Find Your Familiar — Crystal Kitty Club">
+  <meta property="og:description" content="Which gem queen claims you? Eight questions. One crystal familiar. She's already been decided.">
   <meta property="og:image" content="https://crystalkittyclub.com/images/crystal-throne.png">
   <meta property="og:url" content="https://crystalkittyclub.com/quiz.html">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Raleway:wght@300;400;500;600&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="styles.css">
+  <style>
+    /* ===== QUIZ APP ===== */
+    #quiz-app {
+      min-height: calc(100vh - 60px);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 5rem 1.25rem 3rem;
+    }
+    .quiz-screen {
+      display: none;
+      width: 100%;
+      max-width: 660px;
+      margin: 0 auto;
+      text-align: center;
+    }
+    .quiz-screen.active {
+      display: block;
+      animation: quizFadeIn 0.45s ease forwards;
+    }
+    @keyframes quizFadeIn {
+      from { opacity: 0; transform: translateY(14px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    /* ===== INTRO ===== */
+    .intro-eyebrow {
+      font-family: var(--font-heading);
+      font-size: 0.65rem;
+      letter-spacing: 0.2em;
+      color: var(--gold);
+      text-transform: uppercase;
+      margin-bottom: 1.5rem;
+    }
+    .intro-title {
+      font-family: var(--font-heading);
+      font-size: clamp(1.8rem, 5vw, 3rem);
+      font-weight: 600;
+      color: #fff;
+      letter-spacing: 0.04em;
+      line-height: 1.25;
+      margin-bottom: 1rem;
+      text-shadow: 0 0 40px rgba(201,168,76,0.2);
+    }
+    .intro-sub {
+      color: var(--text-muted);
+      max-width: 420px;
+      margin: 0 auto 2.5rem;
+      line-height: 1.75;
+      font-size: 0.95rem;
+    }
+    .intro-card-fan {
+      display: flex;
+      justify-content: center;
+      height: 120px;
+      position: relative;
+      margin-bottom: 2.5rem;
+    }
+    .intro-card {
+      position: absolute;
+      width: 54px;
+      height: 88px;
+      background: var(--bg-card);
+      border: 1px solid rgba(201,168,76,0.3);
+      border-radius: 6px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: rgba(201,168,76,0.4);
+      font-size: 1.1rem;
+      bottom: 0;
+      transform-origin: bottom center;
+    }
+    .intro-card:nth-child(1) { transform: rotate(-28deg) translateX(-80px); }
+    .intro-card:nth-child(2) { transform: rotate(-14deg) translateX(-40px); }
+    .intro-card:nth-child(3) { transform: rotate(0deg); border-color: rgba(201,168,76,0.6); color: rgba(201,168,76,0.7); z-index: 2; }
+    .intro-card:nth-child(4) { transform: rotate(14deg) translateX(40px); }
+    .intro-card:nth-child(5) { transform: rotate(28deg) translateX(80px); }
+
+    /* ===== QUESTIONS ===== */
+    .question-progress {
+      font-family: var(--font-heading);
+      font-size: 0.6rem;
+      letter-spacing: 0.18em;
+      color: var(--gold);
+      text-transform: uppercase;
+      margin-bottom: 1.25rem;
+    }
+    .question-text {
+      font-family: var(--font-heading);
+      font-size: clamp(1rem, 3vw, 1.35rem);
+      font-weight: 600;
+      color: #fff;
+      letter-spacing: 0.03em;
+      line-height: 1.45;
+      margin-bottom: 2rem;
+      min-height: 3em;
+    }
+    .answers-grid {
+      display: flex;
+      flex-direction: column;
+      gap: 0.75rem;
+      margin-bottom: 2rem;
+    }
+    .answer-btn {
+      background: rgba(255,255,255,0.03);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 1rem 1.25rem;
+      color: rgba(255,255,255,0.78);
+      font-family: var(--font-body);
+      font-size: 0.9rem;
+      line-height: 1.5;
+      cursor: pointer;
+      text-align: left;
+      transition: all 0.2s ease;
+      display: flex;
+      align-items: flex-start;
+      gap: 0.85rem;
+      width: 100%;
+    }
+    .answer-btn:hover {
+      border-color: rgba(201,168,76,0.5);
+      background: rgba(201,168,76,0.06);
+      color: #fff;
+      transform: translateY(-1px);
+    }
+    .answer-btn.selected {
+      border-color: var(--gold);
+      background: rgba(201,168,76,0.12);
+      color: #fff;
+    }
+    .answer-letter {
+      font-family: var(--font-heading);
+      font-size: 0.62rem;
+      letter-spacing: 0.12em;
+      color: var(--gold);
+      text-transform: uppercase;
+      flex-shrink: 0;
+      margin-top: 3px;
+      min-width: 16px;
+    }
+    .progress-dots {
+      display: flex;
+      justify-content: center;
+      gap: 7px;
+    }
+    .progress-dot {
+      width: 5px;
+      height: 5px;
+      border-radius: 50%;
+      background: var(--border);
+      transition: background 0.3s ease;
+    }
+    .progress-dot.filled  { background: var(--gold); }
+    .progress-dot.current { background: var(--gold-light); box-shadow: 0 0 6px rgba(201,168,76,0.5); }
+
+    /* ===== EMAIL GATE ===== */
+    .email-gate-box {
+      background: rgba(255,255,255,0.04);
+      backdrop-filter: blur(12px);
+      border: 1px solid rgba(201,168,76,0.25);
+      border-radius: 16px;
+      padding: 3rem 2rem;
+      max-width: 480px;
+      margin: 0 auto;
+    }
+    .email-gate-title {
+      font-family: var(--font-heading);
+      font-size: clamp(1.4rem, 4vw, 2rem);
+      color: #fff;
+      letter-spacing: 0.04em;
+      line-height: 1.25;
+      margin-bottom: 0.75rem;
+    }
+    .email-gate-sub {
+      color: var(--text-muted);
+      font-size: 0.9rem;
+      line-height: 1.7;
+      margin-bottom: 1.75rem;
+    }
+
+    /* ===== REVEAL ===== */
+    .reveal-container {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 1.5rem;
+    }
+    .reveal-eyebrow {
+      font-family: var(--font-heading);
+      font-size: 0.62rem;
+      letter-spacing: 0.2em;
+      color: var(--gold);
+      text-transform: uppercase;
+    }
+    .flip-card-wrapper {
+      perspective: 1200px;
+      width: 240px;
+      height: 360px;
+    }
+    .flip-card-inner {
+      width: 100%;
+      height: 100%;
+      position: relative;
+      transform-style: preserve-3d;
+      transition: transform 1.1s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+    .flip-card-inner.flipped {
+      transform: rotateY(180deg);
+    }
+    .flip-card-front,
+    .flip-card-back {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      backface-visibility: hidden;
+      -webkit-backface-visibility: hidden;
+      border-radius: 12px;
+      overflow: hidden;
+      box-shadow: 0 8px 40px rgba(0,0,0,0.6), 0 0 30px rgba(201,168,76,0.12);
+    }
+    .flip-card-front {
+      background: linear-gradient(145deg, #0e0e2a, #1a1a3a);
+      border: 1px solid rgba(201,168,76,0.4);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 0.5rem;
+    }
+    .flip-card-front::before {
+      content: '';
+      position: absolute;
+      inset: 8px;
+      border: 1px solid rgba(201,168,76,0.18);
+      border-radius: 8px;
+      pointer-events: none;
+    }
+    .flip-card-symbol {
+      font-size: 2rem;
+      color: rgba(201,168,76,0.5);
+      animation: cardPulse 2s ease-in-out infinite;
+    }
+    @keyframes cardPulse {
+      0%, 100% { opacity: 0.4; transform: scale(1); }
+      50%       { opacity: 0.8; transform: scale(1.08); }
+    }
+    .flip-card-wordmark {
+      font-family: var(--font-heading);
+      font-size: 0.52rem;
+      letter-spacing: 0.16em;
+      color: rgba(201,168,76,0.3);
+      text-transform: uppercase;
+    }
+    .flip-card-back {
+      transform: rotateY(180deg);
+    }
+    .flip-card-back img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+    .reveal-subtitle {
+      font-family: var(--font-heading);
+      font-size: 0.68rem;
+      letter-spacing: 0.14em;
+      color: var(--text-muted);
+      text-transform: uppercase;
+      opacity: 0;
+      transition: opacity 0.8s ease;
+    }
+    .reveal-subtitle.visible { opacity: 1; }
+
+    /* ===== RESULT ===== */
+    #screen-result { max-width: 600px; }
+    .result-gem-label {
+      font-family: var(--font-heading);
+      font-size: 0.62rem;
+      letter-spacing: 0.22em;
+      color: var(--gold);
+      text-transform: uppercase;
+      margin-bottom: 0.5rem;
+    }
+    .result-queen-name {
+      font-family: var(--font-heading);
+      font-size: clamp(1.8rem, 5vw, 2.8rem);
+      font-weight: 600;
+      color: #fff;
+      letter-spacing: 0.04em;
+      margin-bottom: 0.3rem;
+      text-shadow: 0 0 40px rgba(201,168,76,0.25);
+    }
+    .result-energy {
+      font-family: var(--font-heading);
+      font-size: 0.62rem;
+      letter-spacing: 0.18em;
+      color: var(--text-muted);
+      text-transform: uppercase;
+      margin-bottom: 2rem;
+    }
+    .result-card-image {
+      width: 200px;
+      height: 300px;
+      margin: 0 auto 2rem;
+      border-radius: 10px;
+      overflow: hidden;
+      box-shadow: 0 8px 40px rgba(0,0,0,0.5), 0 0 40px rgba(201,168,76,0.15);
+      border: 1px solid rgba(201,168,76,0.3);
+    }
+    .result-card-image img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+    .result-divider {
+      width: 60px;
+      height: 1px;
+      background: linear-gradient(to right, transparent, var(--gold), transparent);
+      margin: 0 auto 1.75rem;
+    }
+    .result-line1 {
+      font-family: var(--font-heading);
+      font-size: clamp(0.95rem, 2.5vw, 1.1rem);
+      color: rgba(255,255,255,0.9);
+      letter-spacing: 0.02em;
+      margin-bottom: 0.65rem;
+      line-height: 1.5;
+    }
+    .result-line2 {
+      font-size: 0.92rem;
+      color: rgba(255,255,255,0.68);
+      line-height: 1.75;
+      max-width: 480px;
+      margin: 0 auto 0.85rem;
+    }
+    .result-closing {
+      font-family: var(--font-heading);
+      font-size: 0.88rem;
+      color: var(--gold-light);
+      letter-spacing: 0.04em;
+      font-style: italic;
+      margin-bottom: 1.75rem;
+    }
+    .result-others {
+      font-size: 0.78rem;
+      color: var(--text-muted);
+      letter-spacing: 0.05em;
+      margin-bottom: 0.4rem;
+    }
+    .result-others span { color: rgba(255,255,255,0.65); font-style: italic; }
+    .result-influence {
+      font-family: var(--font-heading);
+      font-size: 0.68rem;
+      letter-spacing: 0.09em;
+      color: rgba(201,168,76,0.6);
+      font-style: italic;
+      margin-bottom: 2.5rem;
+      max-width: 420px;
+      margin-left: auto;
+      margin-right: auto;
+      line-height: 1.6;
+    }
+    .result-actions {
+      display: flex;
+      gap: 1rem;
+      justify-content: center;
+      flex-wrap: wrap;
+      padding-bottom: 2rem;
+    }
+    .btn-share {
+      background: var(--gold);
+      color: #09091a;
+      font-family: var(--font-heading);
+      font-size: 0.7rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      padding: 0.85rem 1.75rem;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+      transition: all 0.2s ease;
+    }
+    .btn-share:hover { background: var(--gold-light); transform: translateY(-1px); }
+    .btn-retake {
+      background: transparent;
+      color: var(--text-muted);
+      font-family: var(--font-heading);
+      font-size: 0.65rem;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      padding: 0.85rem 1.25rem;
+      border: 1px solid var(--border);
+      border-radius: 4px;
+      cursor: pointer;
+      transition: all 0.2s ease;
+    }
+    .btn-retake:hover { border-color: rgba(201,168,76,0.4); color: rgba(255,255,255,0.7); }
+
+    @media (max-width: 480px) {
+      .intro-card:nth-child(1),
+      .intro-card:nth-child(5) { display: none; }
+      .intro-card:nth-child(2) { transform: rotate(-14deg) translateX(-50px); }
+      .intro-card:nth-child(4) { transform: rotate(14deg) translateX(50px); }
+      .email-gate-box { padding: 2rem 1.25rem; }
+    }
+  </style>
 </head>
 <body>
 
@@ -39,116 +446,86 @@
     </div>
   </nav>
 
-  <!-- Oracle Header -->
-  <div class="oracle-page-header">
-    <p class="eyebrow">✦ the palace is ready ✦</p>
-    <h1>The crystal palace<br>has chosen.</h1>
-    <p>Twelve queens guard the palace. One was chosen for you before you were born.<br>Draw your card to find out which gem queen has been waiting.</p>
-  </div>
+  <!-- ===== QUIZ APP ===== -->
+  <div id="quiz-app">
 
-  <!-- Oracle Section -->
-  <section class="oracle-section">
-    <div class="oracle-inner">
-
-      <!-- Glowing crystal orb -->
-      <div class="oracle-orb" aria-hidden="true">
-        <div class="orb-ring"></div>
-        <div class="orb-ring orb-ring-2"></div>
-        <div class="orb-core"></div>
-        <div class="orb-star">✦</div>
+    <!-- INTRO -->
+    <div id="screen-intro" class="quiz-screen active">
+      <p class="intro-eyebrow">✦ the crystal palace is ready ✦</p>
+      <div class="intro-card-fan" aria-hidden="true">
+        <div class="intro-card">✦</div>
+        <div class="intro-card">✦</div>
+        <div class="intro-card">✦</div>
+        <div class="intro-card">✦</div>
+        <div class="intro-card">✦</div>
       </div>
-
-      <!-- Tarot card fan -->
-      <div class="card-fan" aria-hidden="true">
-        <div class="tarot-card tc-1"></div>
-        <div class="tarot-card tc-2"></div>
-        <div class="tarot-card tc-3"></div>
-        <div class="tarot-card tc-4"></div>
-        <div class="tarot-card tc-5"></div>
-      </div>
-
-      <!-- Summon / draw form -->
-      <div class="summon-box">
-        <p class="eyebrow">✦ enter your realm ✦</p>
-        <h2>Draw your card</h2>
-        <p>
-          Be among the first to find your gem familiar when the oracle opens.
-          Your result reveals your crystal queen, her personality, her powers —
-          and whether she approves of you.
-        </p>
-        <!-- Replace xwvyzopd with your Formspree form ID.
-             Sign up free at formspree.io → create a form → copy the ID. -->
-        <form class="email-form" style="justify-content:center;"
-              action="https://formspree.io/f/xwvyzopd" method="POST">
-          <input type="hidden" name="_subject" value="Crystal Kitty Club — Oracle Waitlist">
-          <input type="email" name="email" placeholder="your@email.com" required aria-label="Your email address">
-          <button type="submit" class="btn btn-primary">Summon My Familiar ✦</button>
-        </form>
-        <p class="form-note" style="text-align:center; margin-top:0.6rem;">
-          The chosen are notified first. No spam — just the oracle.
-        </p>
-      </div>
-
-      <!-- Lore copy -->
-      <div class="oracle-lore">
-        <p class="oracle-lore-quote">"Some familiars choose their human.<br>Yours has already decided."</p>
-      </div>
-
-      <!-- 12 locked queens -->
-      <div class="twelve-queens">
-        <p class="twelve-queens-label">The Twelve Gem Familiars — All Locked</p>
-        <div class="queen-locks">
-          <span class="queen-lock"><span class="lock-icon">🔒</span> Ruby</span>
-          <span class="queen-lock"><span class="lock-icon">🔒</span> Emerald</span>
-          <span class="queen-lock"><span class="lock-icon">🔒</span> Opal</span>
-          <span class="queen-lock"><span class="lock-icon">🔒</span> Pearl</span>
-          <span class="queen-lock"><span class="lock-icon">🔒</span> Citrine</span>
-          <span class="queen-lock"><span class="lock-icon">🔒</span> Peridot</span>
-          <span class="queen-lock"><span class="lock-icon">🔒</span> Rose Quartz</span>
-          <span class="queen-lock"><span class="lock-icon">🔒</span> Obsidian</span>
-          <span class="queen-lock"><span class="lock-icon">🔒</span> Sapphire</span>
-          <span class="queen-lock"><span class="lock-icon">🔒</span> Garnet</span>
-          <span class="queen-lock"><span class="lock-icon">🔒</span> Aquamarine</span>
-          <span class="queen-lock"><span class="lock-icon">🔒</span> Moonstone</span>
-        </div>
-      </div>
-
+      <h1 class="intro-title">Eight questions.<br>One queen.<br>She's already decided.</h1>
+      <p class="intro-sub">Twelve gem queens guard the crystal palace. Your familiar has been watching since before you knew to look.</p>
+      <button class="btn btn-primary" onclick="startQuiz()">Begin the Reading ✦</button>
     </div>
-  </section>
 
-  <style>
-    .oracle-page-header {
-      text-align: center;
-      padding: 4.5rem 1.25rem 1.5rem;
-    }
-    .oracle-page-header h1 {
-      font-family: var(--font-heading);
-      font-size: clamp(1.9rem, 5vw, 3.4rem);
-      font-weight: 600;
-      color: #fff;
-      letter-spacing: 0.04em;
-      margin-bottom: 0.85rem;
-      line-height: 1.2;
-      text-shadow: 0 0 40px rgba(201,168,76,0.25);
-    }
-    .oracle-page-header p {
-      color: var(--text-muted);
-      max-width: 560px;
-      margin: 0 auto;
-      line-height: 1.75;
-    }
-    .oracle-lore {
-      margin: 0 0 2rem;
-    }
-    .oracle-lore-quote {
-      font-family: var(--font-heading);
-      font-size: clamp(0.85rem, 2.2vw, 1.05rem);
-      color: rgba(201,168,76,0.55);
-      letter-spacing: 0.06em;
-      line-height: 1.8;
-      font-style: italic;
-    }
-  </style>
+    <!-- QUESTIONS -->
+    <div id="screen-questions" class="quiz-screen">
+      <p class="question-progress" id="question-progress">Question 1 of 8</p>
+      <h2 class="question-text" id="question-text"></h2>
+      <div class="answers-grid" id="answers-grid"></div>
+      <div class="progress-dots" id="progress-dots"></div>
+    </div>
+
+    <!-- EMAIL GATE -->
+    <div id="screen-email" class="quiz-screen">
+      <div class="email-gate-box">
+        <p class="eyebrow" style="margin-bottom:1rem;">✦ she has been chosen ✦</p>
+        <h2 class="email-gate-title">Your queen<br>is waiting.</h2>
+        <p class="email-gate-sub">Enter your email to meet your gem familiar. One queen. Chosen for you.</p>
+        <form id="email-form" class="email-form" style="justify-content:center;" onsubmit="handleEmailSubmit(event)">
+          <input type="email" name="email" id="email-input" placeholder="your@email.com" required aria-label="Your email address">
+          <button type="submit" class="btn btn-primary" id="email-submit-btn">Meet My Queen ✦</button>
+        </form>
+        <p class="form-note" style="text-align:center; margin-top:0.6rem;">No spam — just your queen.</p>
+      </div>
+    </div>
+
+    <!-- REVEAL -->
+    <div id="screen-reveal" class="quiz-screen">
+      <div class="reveal-container">
+        <p class="reveal-eyebrow">✦ your card is turning ✦</p>
+        <div class="flip-card-wrapper">
+          <div class="flip-card-inner" id="flip-card">
+            <div class="flip-card-front">
+              <span class="flip-card-symbol">✦</span>
+              <span class="flip-card-wordmark">Crystal Kitty Club</span>
+            </div>
+            <div class="flip-card-back">
+              <img id="reveal-queen-image" src="" alt="Your gem familiar">
+            </div>
+          </div>
+        </div>
+        <p class="reveal-subtitle" id="reveal-subtitle">Your familiar has arrived.</p>
+      </div>
+    </div>
+
+    <!-- RESULT -->
+    <div id="screen-result" class="quiz-screen">
+      <p class="result-gem-label" id="result-gem-label"></p>
+      <h2 class="result-queen-name" id="result-queen-name"></h2>
+      <p class="result-energy" id="result-energy"></p>
+      <div class="result-card-image">
+        <img id="result-image" src="" alt="">
+      </div>
+      <div class="result-divider"></div>
+      <p class="result-line1" id="result-line1"></p>
+      <p class="result-line2" id="result-line2"></p>
+      <p class="result-closing" id="result-closing"></p>
+      <p class="result-others" id="result-others"></p>
+      <p class="result-influence" id="result-influence"></p>
+      <div class="result-actions">
+        <button class="btn-share" onclick="shareResult()">Share Your Queen ✦</button>
+        <button class="btn-retake" onclick="retakeQuiz()">Take It Again</button>
+      </div>
+    </div>
+
+  </div><!-- end #quiz-app -->
 
   <footer class="footer">
     <div class="container">
@@ -161,6 +538,476 @@
       <p class="footer-copy">&copy; 2026 Crystal Kitty Club. All rights reserved.</p>
     </div>
   </footer>
+
+  <script>
+    // ============================================================
+    // DATA
+    // ============================================================
+
+    const questions = [
+      {
+        text: 'A stranger tells you that you have "big energy." You:',
+        options: [
+          { letter: 'A', text: "Know. You've always known." },
+          { letter: 'B', text: "Find this slightly alarming. You were trying to be subtle." },
+          { letter: 'C', text: "Are already somewhere else thinking about it." },
+          { letter: 'D', text: "Accept the compliment like it confirms something." }
+        ]
+      },
+      {
+        text: "It's 2am and you can't sleep. You are:",
+        options: [
+          { letter: 'A', text: "Planning something. It's almost ready." },
+          { letter: 'B', text: "Feeling everything at once, and it's fine." },
+          { letter: 'C', text: "Deep in something completely unrelated to your actual life." },
+          { letter: 'D', text: "Staring at the ceiling, thinking several steps ahead." }
+        ]
+      },
+      {
+        text: "The most dangerous thing about you is:",
+        options: [
+          { letter: 'A', text: "You're always watching." },
+          { letter: 'B', text: "You're always heading somewhere." },
+          { letter: 'C', text: "You have standards no one else can meet." },
+          { letter: 'D', text: "No one quite knows what you'll do next." }
+        ]
+      },
+      {
+        text: "Your friends would describe you as the one who:",
+        options: [
+          { letter: 'A', text: "Always has a plan and isn't afraid to say so." },
+          { letter: 'B', text: "Creates the atmosphere." },
+          { letter: 'C', text: "Somehow already knows." },
+          { letter: 'D', text: "Shows up differently every time." }
+        ]
+      },
+      {
+        text: "What are you quietly reaching for?",
+        options: [
+          { letter: 'A', text: "Momentum. Something in motion." },
+          { letter: 'B', text: "Peace without interruption." },
+          { letter: 'C', text: "Understanding. Something you can't quite place." },
+          { letter: 'D', text: "The acknowledgment you've already earned." }
+        ]
+      },
+      {
+        text: "Your ideal throne room:",
+        options: [
+          { letter: 'A', text: "Volcanic rock, gold, heat shimmering in the air." },
+          { letter: 'B', text: "Marble and roses, golden afternoon light." },
+          { letter: 'C', text: "Underground grotto, bioluminescent, no clock." },
+          { letter: 'D', text: "Somewhere no one has been yet." }
+        ]
+      },
+      {
+        text: "What are you most afraid people are right about?",
+        options: [
+          { letter: 'A', text: "You're too intense." },
+          { letter: 'B', text: "You disappear emotionally." },
+          { letter: 'C', text: "You're impossible to satisfy." },
+          { letter: 'D', text: "You never stop performing." }
+        ]
+      },
+      {
+        text: "Which is actually worse:",
+        options: [
+          { letter: 'A', text: "Being stuck somewhere forever. You need to move." },
+          { letter: 'B', text: "Never fully understanding yourself." },
+          { letter: 'C', text: "Honestly? Both sound kind of fine." },
+          { letter: 'D', text: "Neither. I've already handled both." }
+        ]
+      }
+    ];
+
+    // Each queen's answer per question index [Q1..Q8]
+    const scoringMap = {
+      ruby:       ['A','A','B','A','A','A','A','A'],
+      emerald:    ['D','D','C','B','B','B','C','D'],
+      opal:       ['C','C','D','D','A','D','D','C'],
+      pearl:      ['B','B','A','C','C','C','B','B'],
+      citrine:    ['A','D','C','B','D','B','A','D'],
+      peridot:    ['B','A','C','A','C','D','C','B'],
+      roseQuartz: ['D','B','D','B','B','B','D','C'],
+      obsidian:   ['A','D','A','C','D','A','A','D'],
+      sapphire:   ['C','C','B','D','A','D','D','A'],
+      garnet:     ['B','A','B','A','D','A','C','A'],
+      aquamarine: ['C','C','D','C','C','C','B','B'],
+      moonstone:  ['D','B','A','D','B','C','B','C']
+    };
+
+    const queens = {
+      ruby: {
+        gem: 'Ruby',
+        name: 'The Ruby Queen',
+        energy: 'Queen of Momentum',
+        line1: "You were never built for waiting.",
+        line2: "You move before certainty arrives. Somehow, you're usually right.",
+        closing: "The Ruby Queen arrives first. She always has.",
+        others: "impossible to slow down",
+        image: 'images/ruby-queen.png'
+      },
+      emerald: {
+        gem: 'Emerald',
+        name: 'The Emerald Queen',
+        energy: 'Queen of Desire',
+        line1: "You want things deeply, and without apology.",
+        line2: "You're patient not because you doubt yourself, but because you already know it's coming.",
+        closing: "The Emerald Queen has never confused desire with impossibility.",
+        others: "impossible to rush",
+        image: 'images/emerald-queen.png'
+      },
+      opal: {
+        gem: 'Opal',
+        name: 'The Opal Queen',
+        energy: 'Queen of Reinvention',
+        line1: "You've outgrown versions of yourself that other people are still trying to reach.",
+        line2: "No one has ever fully figured you out — including you, sometimes. That's the point.",
+        closing: "The Opal Queen becomes someone new. She always has somewhere else to be.",
+        others: "impossible to predict",
+        image: 'images/opal-queen.png'
+      },
+      pearl: {
+        gem: 'Pearl',
+        name: 'The Pearl Queen',
+        energy: 'Queen of Knowing',
+        line1: "You already knew. Before it was said. Before it happened. Before it made sense.",
+        line2: "You carry things quietly — the ones no one else noticed, the ones no one asked about.",
+        closing: "The Pearl Queen already knew.",
+        others: "impossible to read",
+        image: 'images/pearl-queen.png'
+      },
+      citrine: {
+        gem: 'Citrine',
+        name: 'The Citrine Queen',
+        energy: 'Queen of Recognition',
+        line1: "You take up exactly as much space as you're meant to.",
+        line2: "Being overlooked was never going to happen to you twice.",
+        closing: "The Citrine Queen is unforgettable. She made sure of it.",
+        others: "impossible to forget",
+        image: 'images/citrine-queen.png'
+      },
+      peridot: {
+        gem: 'Peridot',
+        name: 'The Peridot Queen',
+        energy: 'Queen of Precision',
+        line1: "You see what's off before anyone else does — and it bothers you until it's right.",
+        line2: "You're not being critical. You're being accurate.",
+        closing: "The Peridot Queen is correct. Notoriously.",
+        others: "impossible to satisfy",
+        image: 'images/peridot-queen.png'
+      },
+      roseQuartz: {
+        gem: 'Rose Quartz',
+        name: 'The Rose Quartz Queen',
+        energy: 'Queen of Devotion',
+        line1: "You love with intention — which means you've learned exactly who deserves it.",
+        line2: "Your softness is not weakness. It's a very specific kind of power.",
+        closing: "The Rose Quartz Queen loves deliberately. Not everyone gets chosen.",
+        others: "impossibly warm, until you're not",
+        image: 'images/rose-quartz-queen.png'
+      },
+      obsidian: {
+        gem: 'Obsidian',
+        name: 'The Obsidian Queen',
+        energy: 'Queen of Control',
+        line1: "People mistake your stillness for absence.",
+        line2: "Your silence isn't distance — it's patience with a plan attached.",
+        closing: "The Obsidian Queen remains unreadable. That was always the point.",
+        others: "emotionally unreadable",
+        image: 'images/obsidian-queen.png'
+      },
+      sapphire: {
+        gem: 'Sapphire',
+        name: 'The Sapphire Queen',
+        energy: 'Queen of Exploration',
+        line1: "You've never been able to pretend a ceiling isn't there.",
+        line2: "Honesty gets you in trouble sometimes. You've decided it's worth it.",
+        closing: "The Sapphire Queen leaves. She was always going to.",
+        others: "impossible to keep",
+        image: 'images/sapphire-queen.png'
+      },
+      garnet: {
+        gem: 'Garnet',
+        name: 'The Garnet Queen',
+        energy: 'Queen of Vigilance',
+        line1: "You've been watching longer than anyone realizes. Building longer too.",
+        line2: "When you finally move, it will look sudden to everyone except you.",
+        closing: "The Garnet Queen has been watching. She already knows how this ends.",
+        others: "quietly formidable",
+        image: 'images/garnet-queen.png'
+      },
+      aquamarine: {
+        gem: 'Aquamarine',
+        name: 'The Aquamarine Queen',
+        energy: 'Queen of Vision',
+        line1: "It already exists somewhere. You just got there first.",
+        line2: "You care — you just sometimes forget to show up in the ways people expect.",
+        closing: "The Aquamarine Queen sees further. She stopped explaining what she sees.",
+        others: "slightly ahead of reality",
+        image: 'images/aquamarine-queen.png'
+      },
+      moonstone: {
+        gem: 'Moonstone',
+        name: 'The Moonstone Queen',
+        energy: 'Queen of Dissolution',
+        line1: "You absorb things — rooms, moods, people — without meaning to.",
+        line2: "The line between you and the world is thinner than it is for most. You've learned to work with that.",
+        closing: "The Moonstone Queen dissolves the distance. She felt you long before you arrived.",
+        others: "strangely comforting in ways they can't explain",
+        image: 'images/moonstone-queen.png'
+      }
+    };
+
+    // Secondary influence: canon pairings (primary+secondary)
+    const canonPairings = {
+      'ruby+garnet':        "You carry Garnet energy close — you move fast, but never blindly.",
+      'emerald+moonstone':  "You carry Moonstone energy close — you prefer softness with total control.",
+      'obsidian+pearl':     "You carry Pearl energy close — people mistake silence for absence.",
+      'pearl+moonstone':    "You carry Moonstone energy close — the knowing runs deeper than logic.",
+      'citrine+roseQuartz': "You carry Rose Quartz energy close — you love generously, and you expect it back.",
+      'aquamarine+opal':    "You carry Opal energy close — you're ahead of a timeline no one else is on.",
+      'sapphire+opal':      "You carry Opal energy close — the horizon keeps moving and you keep following.",
+      'peridot+garnet':     "You carry Garnet energy close — the standards are high and the patience is longer.",
+      'roseQuartz+pearl':   "You carry Pearl energy close — your warmth is not naivety.",
+      'garnet+obsidian':    "You carry Obsidian energy close — the patience has edges.",
+      'moonstone+pearl':    "You carry Pearl energy close — you feel it and then you know it.",
+      'opal+aquamarine':    "You carry Aquamarine energy close — you're not unstable, you're ahead."
+    };
+
+    // ============================================================
+    // STATE
+    // ============================================================
+
+    const state = {
+      currentQuestion: 0,
+      answers: [],
+      primaryQueen: null,
+      secondaryQueen: null
+    };
+
+    // ============================================================
+    // QUIZ FLOW
+    // ============================================================
+
+    function startQuiz() {
+      state.currentQuestion = 0;
+      state.answers = [];
+      showScreen('screen-questions');
+      buildProgressDots();
+      renderQuestion(0);
+    }
+
+    function buildProgressDots() {
+      const el = document.getElementById('progress-dots');
+      el.innerHTML = '';
+      for (let i = 0; i < 8; i++) {
+        const d = document.createElement('div');
+        d.className = 'progress-dot';
+        d.id = 'dot-' + i;
+        el.appendChild(d);
+      }
+    }
+
+    function renderQuestion(index) {
+      const q = questions[index];
+      document.getElementById('question-progress').textContent = 'Question ' + (index + 1) + ' of 8';
+      document.getElementById('question-text').textContent = q.text;
+
+      const grid = document.getElementById('answers-grid');
+      grid.innerHTML = '';
+      q.options.forEach(function(opt) {
+        const btn = document.createElement('button');
+        btn.className = 'answer-btn';
+        btn.innerHTML = '<span class="answer-letter">' + opt.letter + '</span><span>' + opt.text + '</span>';
+        btn.addEventListener('click', function() { selectAnswer(opt.letter, btn); });
+        grid.appendChild(btn);
+      });
+
+      // Update dots
+      for (let i = 0; i < 8; i++) {
+        const dot = document.getElementById('dot-' + i);
+        if (!dot) continue;
+        dot.className = 'progress-dot';
+        if (i < index) dot.classList.add('filled');
+        else if (i === index) dot.classList.add('current');
+      }
+    }
+
+    function selectAnswer(letter, btn) {
+      // Visual feedback
+      document.querySelectorAll('.answer-btn').forEach(function(b) { b.classList.remove('selected'); });
+      btn.classList.add('selected');
+
+      setTimeout(function() {
+        state.answers.push(letter);
+        if (state.currentQuestion < 7) {
+          state.currentQuestion++;
+          renderQuestion(state.currentQuestion);
+          // Re-trigger fade animation on the screen
+          var s = document.getElementById('screen-questions');
+          s.classList.remove('active');
+          void s.offsetWidth; // reflow
+          s.classList.add('active');
+        } else {
+          showScreen('screen-email');
+        }
+      }, 300);
+    }
+
+    // ============================================================
+    // EMAIL GATE
+    // ============================================================
+
+    async function handleEmailSubmit(e) {
+      e.preventDefault();
+      const email = document.getElementById('email-input').value;
+      const btn = document.getElementById('email-submit-btn');
+      btn.textContent = 'Summoning...';
+      btn.disabled = true;
+
+      // Calculate result first
+      calculateResult();
+
+      // Send to Formspree (non-blocking — don't let network issues stop the reveal)
+      fetch('https://formspree.io/f/xwvyzopd', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+        body: JSON.stringify({
+          email: email,
+          _subject: 'Crystal Kitty Club — Gem Familiar',
+          queen: queens[state.primaryQueen] ? queens[state.primaryQueen].name : state.primaryQueen,
+          influence: state.secondaryQueen ? queens[state.secondaryQueen].name : 'none'
+        })
+      }).catch(function() {});
+
+      setTimeout(function() { showReveal(); }, 500);
+    }
+
+    // ============================================================
+    // SCORING
+    // ============================================================
+
+    function calculateResult() {
+      var scores = {};
+      Object.keys(scoringMap).forEach(function(q) { scores[q] = 0; });
+
+      state.answers.forEach(function(answer, qIndex) {
+        var weight = (qIndex === 7) ? 3 : 1; // Q8 worth 3x
+        Object.keys(scoringMap).forEach(function(queen) {
+          if (scoringMap[queen][qIndex] === answer) {
+            scores[queen] += weight;
+          }
+        });
+      });
+
+      // Sort descending
+      var sorted = Object.entries(scores).sort(function(a, b) { return b[1] - a[1]; });
+      state.primaryQueen = sorted[0][0];
+
+      // Secondary influence if within 1 point
+      var gap = sorted[0][1] - sorted[1][1];
+      state.secondaryQueen = (gap <= 1) ? sorted[1][0] : null;
+    }
+
+    // ============================================================
+    // REVEAL
+    // ============================================================
+
+    function showReveal() {
+      var queen = queens[state.primaryQueen];
+      document.getElementById('reveal-queen-image').src = queen.image;
+      document.getElementById('reveal-queen-image').alt = queen.name;
+      showScreen('screen-reveal');
+
+      // Flip after 1.8s
+      setTimeout(function() {
+        document.getElementById('flip-card').classList.add('flipped');
+        // Show subtitle after flip
+        setTimeout(function() {
+          document.getElementById('reveal-subtitle').classList.add('visible');
+          // Move to result
+          setTimeout(function() { showResult(); }, 1400);
+        }, 1100);
+      }, 1800);
+    }
+
+    // ============================================================
+    // RESULT
+    // ============================================================
+
+    function showResult() {
+      var queen = queens[state.primaryQueen];
+      var pairKey = state.primaryQueen + '+' + state.secondaryQueen;
+      var influenceLine = '';
+      if (state.secondaryQueen) {
+        influenceLine = canonPairings[pairKey]
+          || ('You carry ' + queens[state.secondaryQueen].gem + ' energy close.');
+      }
+
+      document.getElementById('result-gem-label').textContent   = '✦ ' + queen.gem + ' ✦';
+      document.getElementById('result-queen-name').textContent  = queen.name;
+      document.getElementById('result-energy').textContent      = queen.energy;
+      document.getElementById('result-image').src               = queen.image;
+      document.getElementById('result-image').alt               = queen.name;
+      document.getElementById('result-line1').textContent       = queen.line1;
+      document.getElementById('result-line2').textContent       = queen.line2;
+      document.getElementById('result-closing').textContent     = queen.closing;
+      document.getElementById('result-others').innerHTML        = 'Others experience you as: <span>' + queen.others + '.</span>';
+      document.getElementById('result-influence').textContent   = influenceLine;
+
+      showScreen('screen-result');
+    }
+
+    // ============================================================
+    // SHARE
+    // ============================================================
+
+    function shareResult() {
+      var queen = queens[state.primaryQueen];
+      var text = 'I got ' + queen.name + ' — ' + queen.closing + '\n\nWhich gem queen claims you? crystalkittyclub.com';
+      if (navigator.share) {
+        navigator.share({ title: 'Crystal Kitty Club', text: text }).catch(function() {});
+      } else {
+        navigator.clipboard.writeText(text).then(function() {
+          var btn = document.querySelector('.btn-share');
+          var original = btn.textContent;
+          btn.textContent = 'Copied ✦';
+          setTimeout(function() { btn.textContent = original; }, 2000);
+        }).catch(function() {});
+      }
+    }
+
+    // ============================================================
+    // RETAKE
+    // ============================================================
+
+    function retakeQuiz() {
+      state.currentQuestion = 0;
+      state.answers = [];
+      state.primaryQueen = null;
+      state.secondaryQueen = null;
+      document.getElementById('flip-card').classList.remove('flipped');
+      document.getElementById('reveal-subtitle').classList.remove('visible');
+      document.getElementById('email-input').value = '';
+      var btn = document.getElementById('email-submit-btn');
+      btn.textContent = 'Meet My Queen ✦';
+      btn.disabled = false;
+      showScreen('screen-intro');
+    }
+
+    // ============================================================
+    // UTILITIES
+    // ============================================================
+
+    function showScreen(id) {
+      document.querySelectorAll('.quiz-screen').forEach(function(s) {
+        s.classList.remove('active');
+      });
+      var target = document.getElementById(id);
+      target.classList.add('active');
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+  </script>
 
 </body>
 </html>
