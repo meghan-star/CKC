@@ -291,7 +291,7 @@
   <div class="page-hero">
     <p class="eyebrow">✦ carry your queen ✦</p>
     <h1>Gem Queen Wallpapers</h1>
-    <p>Your phone deserves a crystal queen. Two packs, 19 queens, free forever.</p>
+    <p>Your phone deserves a crystal queen. Three packs, 19 queens, free forever.</p>
   </div>
 
   <!-- Phone preview fan -->
@@ -323,13 +323,14 @@
   <!-- Email gate -->
   <section class="wallpaper-gate-section" id="wallpaper-gate">
     <div class="wallpaper-gate-box">
-      <p class="eyebrow" style="margin-bottom:1rem;">✦ two packs ✦</p>
+      <p class="eyebrow" style="margin-bottom:1rem;">✦ three packs ✦</p>
       <div class="pack-pill">
-        <span>The Familiar Pack — 12 queens</span>
-        <span>The Gallery Pack — 7 queens</span>
+        <span>The Fire Queens — 6</span>
+        <span>The Dream Queens — 6</span>
+        <span>The Palace Queens — 7</span>
       </div>
       <h2 class="wallpaper-gate-title">Claim your wallpapers.</h2>
-      <p class="wallpaper-gate-sub">All 19 gem queens, free for your lock screen or home screen. Enter your email to unlock every download.</p>
+      <p class="wallpaper-gate-sub">All 19 gem queens across three packs, free for your lock screen or home screen. Enter your email to unlock every download.</p>
       <form id="wallpaper-form" class="email-form" style="justify-content:center;" onsubmit="handleWallpaperEmail(event)">
         <input type="hidden" name="_subject" value="Crystal Kitty Club — Wallpaper Download">
         <input type="email" name="email" id="wallpaper-email" placeholder="your@email.com" required aria-label="Your email address">
@@ -342,26 +343,37 @@
   <!-- Download packs (revealed after email submit) -->
   <section class="wallpaper-packs-section" id="wallpaper-packs" style="display:none;">
 
-    <!-- Pack 1: The Familiar Pack -->
+    <!-- Pack 1: The Fire Queens -->
     <div class="pack-block">
       <div class="pack-header">
         <p class="eyebrow" style="margin-bottom:0.75rem;">✦ pack one ✦</p>
-        <h2>The Familiar Pack</h2>
-        <p>All 12 gem queens from the Find Your Familiar quiz.<br>Don't know yours yet? <a href="quiz.html">Take the quiz ✦</a></p>
+        <h2>The Fire Queens</h2>
+        <p>Momentum, precision, control, vigilance, recognition, exploration.<br>Don't know yours yet? <a href="quiz.html">Take the quiz ✦</a></p>
       </div>
       <div class="pack-divider"></div>
-      <div class="wallpaper-grid" id="familiar-grid"></div>
+      <div class="wallpaper-grid" id="fire-grid"></div>
     </div>
 
-    <!-- Pack 2: The Gallery Pack -->
+    <!-- Pack 2: The Dream Queens -->
     <div class="pack-block">
       <div class="pack-header">
         <p class="eyebrow" style="margin-bottom:0.75rem;">✦ pack two ✦</p>
-        <h2>The Gallery Pack</h2>
+        <h2>The Dream Queens</h2>
+        <p>Desire, knowing, reinvention, devotion, vision, dissolution.</p>
+      </div>
+      <div class="pack-divider"></div>
+      <div class="wallpaper-grid" id="dream-grid"></div>
+    </div>
+
+    <!-- Pack 3: The Palace Queens -->
+    <div class="pack-block">
+      <div class="pack-header">
+        <p class="eyebrow" style="margin-bottom:0.75rem;">✦ pack three ✦</p>
+        <h2>The Palace Queens</h2>
         <p>The original gem queens of Crystal Kitty Club.</p>
       </div>
       <div class="pack-divider"></div>
-      <div class="wallpaper-grid" id="gallery-grid"></div>
+      <div class="wallpaper-grid" id="palace-grid"></div>
       <p class="mobile-note">On iPhone: tap and hold any image above, then choose "Save to Photos."</p>
     </div>
 
@@ -384,19 +396,24 @@
     // DATA
     // ============================================================
 
-    const familiarPack = [
-      { name: 'Ruby Queen',       image: 'images/ruby-queen.png',        dl: 'CKC-Ruby-Queen.png' },
-      { name: 'Emerald Queen',    image: 'images/emerald-queen.png',     dl: 'CKC-Emerald-Queen.png' },
-      { name: 'Opal Queen',       image: 'images/opal-queen.png',        dl: 'CKC-Opal-Queen.png' },
-      { name: 'Pearl Queen',      image: 'images/pearl-queen.png',       dl: 'CKC-Pearl-Queen.png' },
-      { name: 'Citrine Queen',    image: 'images/citrine-queen.png',     dl: 'CKC-Citrine-Queen.png' },
-      { name: 'Peridot Queen',    image: 'images/peridot-queen.png',     dl: 'CKC-Peridot-Queen.png' },
-      { name: 'Rose Quartz Queen',image: 'images/rose-quartz-queen.png', dl: 'CKC-Rose-Quartz-Queen.png' },
-      { name: 'Obsidian Queen',   image: 'images/obsidian-queen.png',    dl: 'CKC-Obsidian-Queen.png' },
-      { name: 'Sapphire Queen',   image: 'images/sapphire-queen.png',    dl: 'CKC-Sapphire-Queen.png' },
-      { name: 'Garnet Queen',     image: 'images/garnet-queen.png',      dl: 'CKC-Garnet-Queen.png' },
-      { name: 'Aquamarine Queen', image: 'images/aquamarine-queen.png',  dl: 'CKC-Aquamarine-Queen.png' },
-      { name: 'Moonstone Queen',  image: 'images/moonstone-queen.png',   dl: 'CKC-Moonstone-Queen.png' }
+    // Fire Queens: Ruby, Citrine, Garnet, Peridot, Obsidian, Sapphire
+    const firePack = [
+      { name: 'Ruby Queen',    image: 'images/ruby-queen.png',    dl: 'CKC-Ruby-Queen.png' },
+      { name: 'Citrine Queen', image: 'images/citrine-queen.png', dl: 'CKC-Citrine-Queen.png' },
+      { name: 'Garnet Queen',  image: 'images/garnet-queen.png',  dl: 'CKC-Garnet-Queen.png' },
+      { name: 'Peridot Queen', image: 'images/peridot-queen.png', dl: 'CKC-Peridot-Queen.png' },
+      { name: 'Obsidian Queen',image: 'images/obsidian-queen.png',dl: 'CKC-Obsidian-Queen.png' },
+      { name: 'Sapphire Queen',image: 'images/sapphire-queen.png',dl: 'CKC-Sapphire-Queen.png' }
+    ];
+
+    // Dream Queens: Emerald, Pearl, Opal, Rose Quartz, Aquamarine, Moonstone
+    const dreamPack = [
+      { name: 'Emerald Queen',     image: 'images/emerald-queen.png',     dl: 'CKC-Emerald-Queen.png' },
+      { name: 'Pearl Queen',       image: 'images/pearl-queen.png',       dl: 'CKC-Pearl-Queen.png' },
+      { name: 'Opal Queen',        image: 'images/opal-queen.png',        dl: 'CKC-Opal-Queen.png' },
+      { name: 'Rose Quartz Queen', image: 'images/rose-quartz-queen.png', dl: 'CKC-Rose-Quartz-Queen.png' },
+      { name: 'Aquamarine Queen',  image: 'images/aquamarine-queen.png',  dl: 'CKC-Aquamarine-Queen.png' },
+      { name: 'Moonstone Queen',   image: 'images/moonstone-queen.png',   dl: 'CKC-Moonstone-Queen.png' }
     ];
 
     const galleryPack = [
@@ -448,8 +465,9 @@
       }).catch(function() {});
 
       // Build grids and reveal
-      buildGrid('familiar-grid', familiarPack);
-      buildGrid('gallery-grid', galleryPack);
+      buildGrid('fire-grid', firePack);
+      buildGrid('dream-grid', dreamPack);
+      buildGrid('palace-grid', galleryPack);
 
       // Fade gate out, show packs
       var gate = document.getElementById('wallpaper-gate');
