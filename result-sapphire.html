@@ -139,6 +139,25 @@
       .result-image-wrap img { max-width: 360px; }
       .result-content { padding: 0; }
     }
+    .btn-share-result {
+      font-family: var(--font-heading);
+      font-size: 0.8rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--gold);
+      background: transparent;
+      border: 1px solid rgba(201,168,76,0.45);
+      border-radius: 4px;
+      padding: 0.75rem 1.5rem;
+      cursor: pointer;
+      transition: all 0.2s ease;
+      white-space: nowrap;
+    }
+    .btn-share-result:hover {
+      background: rgba(201,168,76,0.1);
+      border-color: var(--gold);
+      color: var(--gold-light);
+    }
   </style>
 </head>
 <body>
@@ -183,6 +202,7 @@
         <div class="result-actions">
           <a href="quiz.html" class="btn btn-ghost">Retake the Quiz ✦</a>
           <a href="wallpapers.html" class="btn btn-primary">Get Your Wallpaper ✦</a>
+          <button class="btn btn-share-result" onclick="shareThisPage()">Share Your Result ✦</button>
         </div>
       </div>
     </div>
@@ -208,5 +228,21 @@
     </div>
   </footer>
 
+  <script>
+    function shareThisPage() {
+      var url = window.location.href;
+      var isMobile = ('ontouchstart' in window) || (navigator.maxTouchPoints > 0);
+      if (isMobile && navigator.share) {
+        navigator.share({ title: document.title, url: url }).catch(function() {});
+      } else {
+        navigator.clipboard.writeText(url).then(function() {
+          var btn = document.querySelector('.btn-share-result');
+          var orig = btn.textContent;
+          btn.textContent = 'Link Copied ✦';
+          setTimeout(function() { btn.textContent = orig; }, 2500);
+        }).catch(function() {});
+      }
+    }
+  </script>
 </body>
 </html>

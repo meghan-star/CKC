@@ -936,8 +936,17 @@
         // Show subtitle after flip
         setTimeout(function() {
           document.getElementById('reveal-subtitle').classList.add('visible');
-          // Move to result
-          setTimeout(function() { showResult(); }, 1400);
+          // Navigate to result page
+          setTimeout(function() {
+            var slugMap = {
+              ruby: 'ruby', emerald: 'emerald', opal: 'opal', pearl: 'pearl',
+              citrine: 'citrine', peridot: 'peridot', roseQuartz: 'rose-quartz',
+              obsidian: 'obsidian', sapphire: 'sapphire', garnet: 'garnet',
+              aquamarine: 'aquamarine', moonstone: 'moonstone'
+            };
+            var slug = slugMap[state.primaryQueen] || state.primaryQueen;
+            window.location.href = 'result-' + slug + '.html';
+          }, 1800);
         }, 1100);
       }, 1800);
     }
