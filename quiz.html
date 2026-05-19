@@ -974,12 +974,20 @@
     // ============================================================
 
     function shareResult() {
+      var slugMap = {
+        ruby: 'ruby', emerald: 'emerald', opal: 'opal', pearl: 'pearl',
+        citrine: 'citrine', peridot: 'peridot', roseQuartz: 'rose-quartz',
+        obsidian: 'obsidian', sapphire: 'sapphire', garnet: 'garnet',
+        aquamarine: 'aquamarine', moonstone: 'moonstone'
+      };
       var queen = queens[state.primaryQueen];
-      var text = 'I got ' + queen.name + ' — ' + queen.closing + '\n\nWhich gem queen claims you? crystalkittyclub.com';
+      var slug = slugMap[state.primaryQueen] || state.primaryQueen;
+      var url = 'https://crystalkittyclub.com/result-' + slug + '.html';
+      var text = 'I got ' + queen.name + ' — ' + queen.closing + '\n\nWhich gem queen claims you?';
       if (navigator.share) {
-        navigator.share({ title: 'Crystal Kitty Club', text: text }).catch(function() {});
+        navigator.share({ title: 'Crystal Kitty Club', text: text, url: url }).catch(function() {});
       } else {
-        navigator.clipboard.writeText(text).then(function() {
+        navigator.clipboard.writeText(text + '\n' + url).then(function() {
           var btn = document.querySelector('.btn-share');
           var original = btn.textContent;
           btn.textContent = 'Copied ✦';
