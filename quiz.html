@@ -984,14 +984,15 @@
       var slug = slugMap[state.primaryQueen] || state.primaryQueen;
       var url = 'https://crystalkittyclub.com/result-' + slug + '.html';
       var text = 'I got ' + queen.name + ' — ' + queen.closing + '\n\nWhich gem queen claims you?';
-      if (navigator.share) {
+      var isMobile = ('ontouchstart' in window) || (navigator.maxTouchPoints > 0);
+      if (isMobile && navigator.share) {
         navigator.share({ title: 'Crystal Kitty Club', text: text, url: url }).catch(function() {});
       } else {
         navigator.clipboard.writeText(text + '\n' + url).then(function() {
           var btn = document.querySelector('.btn-share');
           var original = btn.textContent;
-          btn.textContent = 'Copied ✦';
-          setTimeout(function() { btn.textContent = original; }, 2000);
+          btn.textContent = 'Link Copied ✦';
+          setTimeout(function() { btn.textContent = original; }, 2500);
         }).catch(function() {});
       }
     }
