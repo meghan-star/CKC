@@ -174,6 +174,188 @@
     </div>
   </section>
 
+  <!-- Palace Expansion Poll -->
+  <section class="palace-poll-section">
+    <div class="container">
+      <div class="palace-poll-box">
+        <p class="eyebrow">✦ the court convenes ✦</p>
+        <h2 class="palace-poll-title">The palace is expanding.<br>Where should we go next?</h2>
+        <p class="palace-poll-sub">Your answer shapes what gets conjured next.</p>
+
+        <form class="palace-poll-form" id="palace-poll-form" action="https://formspree.io/f/xwvyzopd" method="POST">
+          <input type="hidden" name="_subject" value="CKC Palace Poll">
+          <input type="hidden" name="form_type" value="palace_poll">
+
+          <div class="poll-options">
+            <label class="poll-option">
+              <input type="radio" name="next_direction" value="More gem queens — grow the court" required>
+              <span class="poll-option-inner">
+                <span class="poll-gem">✦</span>
+                <span class="poll-text">More gem queens — grow the court</span>
+              </span>
+            </label>
+            <label class="poll-option">
+              <input type="radio" name="next_direction" value="Wallpapers for every queen">
+              <span class="poll-option-inner">
+                <span class="poll-gem">✦</span>
+                <span class="poll-text">Wallpapers for every queen</span>
+              </span>
+            </label>
+            <label class="poll-option">
+              <input type="radio" name="next_direction" value="Carry your queen with you — stickers, prints, merch">
+              <span class="poll-option-inner">
+                <span class="poll-gem">✦</span>
+                <span class="poll-text">Carry your queen with you — stickers, prints, merch</span>
+              </span>
+            </label>
+            <label class="poll-option">
+              <input type="radio" name="next_direction" value="Bring the queens to life — video and animation">
+              <span class="poll-option-inner">
+                <span class="poll-gem">✦</span>
+                <span class="poll-text">Bring the queens to life — video and animation</span>
+              </span>
+            </label>
+            <label class="poll-option">
+              <input type="radio" name="next_direction" value="Something else">
+              <span class="poll-option-inner">
+                <span class="poll-gem">✦</span>
+                <span class="poll-text">Something else — tell us below</span>
+              </span>
+            </label>
+          </div>
+
+          <textarea name="court_message" class="poll-textarea" placeholder="Anything else the court should know? (optional)" rows="3"></textarea>
+
+          <button type="submit" class="btn btn-primary poll-submit">Cast Your Vote ✦</button>
+        </form>
+
+        <div id="palace-poll-thanks" class="poll-thanks" style="display:none;">
+          <p class="poll-thanks-title">✦ The court has received your counsel. ✦</p>
+          <p class="poll-thanks-sub">Your voice shapes what gets conjured next.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <style>
+    .palace-poll-section {
+      padding: 5rem 1.25rem;
+      background: rgba(255,255,255,0.02);
+      border-top: 1px solid var(--border);
+    }
+    .palace-poll-box {
+      max-width: 600px;
+      margin: 0 auto;
+      text-align: center;
+    }
+    .palace-poll-title {
+      font-family: var(--font-heading);
+      font-size: clamp(1.6rem, 3.5vw, 2.2rem);
+      color: #fff;
+      letter-spacing: 0.03em;
+      line-height: 1.25;
+      margin-bottom: 0.75rem;
+    }
+    .palace-poll-sub {
+      color: var(--text-muted);
+      font-size: 0.9rem;
+      margin-bottom: 2.5rem;
+    }
+    .poll-options {
+      display: flex;
+      flex-direction: column;
+      gap: 0.75rem;
+      margin-bottom: 1.5rem;
+      text-align: left;
+    }
+    .poll-option input[type="radio"] { display: none; }
+    .poll-option-inner {
+      display: flex;
+      align-items: center;
+      gap: 0.9rem;
+      padding: 0.9rem 1.25rem;
+      border: 1px solid rgba(201,168,76,0.2);
+      border-radius: 8px;
+      cursor: pointer;
+      transition: all 0.2s ease;
+      background: rgba(255,255,255,0.02);
+    }
+    .poll-option:hover .poll-option-inner {
+      border-color: rgba(201,168,76,0.5);
+      background: rgba(201,168,76,0.05);
+    }
+    .poll-option input:checked + .poll-option-inner {
+      border-color: var(--gold);
+      background: rgba(201,168,76,0.1);
+    }
+    .poll-gem {
+      color: var(--gold);
+      font-size: 0.7rem;
+      flex-shrink: 0;
+    }
+    .poll-text {
+      font-family: var(--font-body);
+      font-size: 0.9rem;
+      color: rgba(255,255,255,0.85);
+      line-height: 1.4;
+    }
+    .poll-textarea {
+      width: 100%;
+      background: rgba(255,255,255,0.03);
+      border: 1px solid rgba(201,168,76,0.2);
+      border-radius: 8px;
+      color: rgba(255,255,255,0.8);
+      font-family: var(--font-body);
+      font-size: 0.875rem;
+      padding: 0.9rem 1rem;
+      resize: vertical;
+      margin-bottom: 1.5rem;
+      transition: border-color 0.2s;
+      box-sizing: border-box;
+    }
+    .poll-textarea:focus {
+      outline: none;
+      border-color: rgba(201,168,76,0.5);
+    }
+    .poll-textarea::placeholder { color: rgba(255,255,255,0.3); }
+    .poll-submit { width: 100%; max-width: 280px; }
+    .poll-thanks { padding: 2rem 0; }
+    .poll-thanks-title {
+      font-family: var(--font-heading);
+      font-size: 1.1rem;
+      color: var(--gold);
+      letter-spacing: 0.06em;
+      margin-bottom: 0.5rem;
+    }
+    .poll-thanks-sub {
+      color: var(--text-muted);
+      font-size: 0.9rem;
+    }
+  </style>
+
+  <script>
+    (function() {
+      var form = document.getElementById('palace-poll-form');
+      var thanks = document.getElementById('palace-poll-thanks');
+      if (!form) return;
+      form.addEventListener('submit', function(e) {
+        e.preventDefault();
+        var data = new FormData(form);
+        fetch(form.action, {
+          method: 'POST',
+          body: data,
+          headers: { 'Accept': 'application/json' }
+        }).then(function(r) {
+          form.style.display = 'none';
+          thanks.style.display = 'block';
+        }).catch(function() {
+          form.style.display = 'none';
+          thanks.style.display = 'block';
+        });
+      });
+    })();
+  </script>
+
   <!-- Footer -->
   <footer class="footer">
     <div class="container">
