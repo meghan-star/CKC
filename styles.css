@@ -126,12 +126,21 @@ body {
   gap: 1.5rem;
 }
 .nav-logo {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
   font-family: var(--font-heading);
   font-size: 1rem;
   font-weight: 600;
   color: var(--gold-light);
   white-space: nowrap;
   letter-spacing: 0.05em;
+  flex-shrink: 0;
+}
+.nav-logo-img {
+  height: 36px;
+  width: 36px;
+  object-fit: contain;
   flex-shrink: 0;
 }
 .nav-logo:hover { color: #fff; }
@@ -567,11 +576,22 @@ body {
   background: var(--bg-surface);
 }
 .footer-logo {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.5rem;
+  margin-bottom: 1.25rem;
+}
+.footer-logo img {
+  height: 80px;
+  width: auto;
+  object-fit: contain;
+}
+.footer-logo span {
   font-family: var(--font-heading);
   font-size: 0.95rem;
   color: var(--gold);
   letter-spacing: 0.1em;
-  margin-bottom: 1rem;
 }
 .footer-nav {
   display: flex;
