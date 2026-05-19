@@ -316,8 +316,15 @@ body {
 }
 
 @media (max-width: 640px) {
-  .hero-title { font-size: clamp(2.6rem, 14vw, 4.5rem); }
+  .hero-title { font-size: clamp(2.6rem, 14vw, 4.5rem); line-height: 1.12; }
   .hero-sub   { font-size: 0.95rem; }
+}
+
+@media (max-width: 480px) {
+  .section-title { font-size: clamp(1.4rem, 5.5vw, 1.9rem); letter-spacing: 0.03em; }
+  .quiz-cta-content h2 { font-size: clamp(1.6rem, 5vw, 2rem); line-height: 1.25; }
+  .palace-poll-title { font-size: clamp(1.35rem, 5vw, 1.7rem); }
+  .social-section h2 { font-size: clamp(1.3rem, 5vw, 1.7rem); letter-spacing: 0.03em; }
 }
 
 /* ============================================
