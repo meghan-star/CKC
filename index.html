@@ -100,6 +100,186 @@
     </div>
   </section>
 
+  <!-- Featured Queen of the Week -->
+  <section class="featured-queen-section">
+    <div class="container">
+      <p class="eyebrow">✦ queen of the week ✦</p>
+      <div class="featured-queen-inner" id="featured-queen-inner">
+        <!-- Populated by JS below -->
+      </div>
+    </div>
+  </section>
+
+  <style>
+    .featured-queen-section {
+      padding: 5rem 1.25rem;
+      border-top: 1px solid var(--border);
+    }
+    .featured-queen-section .eyebrow {
+      text-align: center;
+      margin-bottom: 2.5rem;
+    }
+    .featured-queen-inner {
+      display: flex;
+      align-items: center;
+      gap: 4rem;
+      max-width: 900px;
+      margin: 0 auto;
+    }
+    .featured-queen-img {
+      flex: 0 0 360px;
+      aspect-ratio: 1;
+      border-radius: 12px;
+      overflow: hidden;
+      border: 1px solid rgba(201,168,76,0.25);
+      box-shadow: 0 0 60px rgba(201,168,76,0.08);
+    }
+    .featured-queen-img img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+    .featured-queen-text {
+      flex: 1;
+    }
+    .featured-queen-gem {
+      font-family: var(--font-heading);
+      font-size: 0.75rem;
+      letter-spacing: 0.18em;
+      color: var(--gold);
+      text-transform: uppercase;
+      margin-bottom: 0.6rem;
+    }
+    .featured-queen-name {
+      font-family: var(--font-heading);
+      font-size: clamp(1.8rem, 3.5vw, 2.6rem);
+      color: #fff;
+      letter-spacing: 0.03em;
+      line-height: 1.15;
+      margin-bottom: 1.25rem;
+    }
+    .featured-queen-personality {
+      font-family: var(--font-body);
+      font-size: 1.05rem;
+      color: rgba(255,255,255,0.7);
+      font-style: italic;
+      line-height: 1.6;
+      margin-bottom: 2rem;
+      border-left: 2px solid rgba(201,168,76,0.4);
+      padding-left: 1.25rem;
+    }
+    @media (max-width: 680px) {
+      .featured-queen-inner {
+        flex-direction: column;
+        gap: 2rem;
+      }
+      .featured-queen-img {
+        flex: none;
+        width: 100%;
+        max-width: 320px;
+        margin: 0 auto;
+      }
+      .featured-queen-text {
+        text-align: center;
+      }
+      .featured-queen-personality {
+        border-left: none;
+        border-top: 2px solid rgba(201,168,76,0.4);
+        padding-left: 0;
+        padding-top: 1rem;
+      }
+    }
+  </style>
+
+  <script>
+    (function() {
+      var gallery = [
+        { gem: 'Emerald', name: 'Emerald Forest', img: 'images/emerald-forest.png', personality: 'Ancient. Patient. Absolutely watching.', court: 'emerald-court' },
+        { gem: 'Emerald', name: 'Emerald Sovereign', img: 'images/emerald-sovereign.png', personality: "Doesn't ask for the crown. Already has it.", court: 'emerald-court' },
+        { gem: 'Emerald', name: 'Emerald Waterfall', img: 'images/emerald-waterfall.jpeg', personality: "Runs deep. Runs fast. You can't keep up.", court: 'emerald-court' },
+        { gem: 'Emerald', name: 'Emerald Leap', img: 'images/emerald-leap.png', personality: 'Never stays in one place long enough to be caught.', court: 'emerald-court' },
+        { gem: 'Emerald', name: 'Emerald Jungle', img: 'images/emerald-jungle.png', personality: 'Young. The forest already knows her name.', court: 'emerald-court' },
+        { gem: 'Emerald', name: 'Emerald Bengal', img: 'images/emerald-bengal.png', personality: 'Wild by design. Owned by no one.', court: 'emerald-court' },
+        { gem: 'Emerald', name: 'Emerald Treasure', img: 'images/emerald-treasure.png', personality: 'All that gold, and she still chose green.', court: 'emerald-court' },
+        { gem: 'Emerald', name: 'Emerald White', img: 'images/emerald-white.png', personality: 'Pure as snow. Sharp as glass.', court: 'emerald-court' },
+        { gem: 'Sapphire', name: 'Sapphire Palace', img: 'images/sapphire-palace.png', personality: "The palace was cold before she arrived. She didn't change that.", court: 'sapphire-court' },
+        { gem: 'Sapphire', name: 'Sapphire Galaxy', img: 'images/sapphire-galaxy.png', personality: 'Born in the deep end of the universe. Prefers it there.', court: 'sapphire-court' },
+        { gem: 'Sapphire', name: 'Sapphire Wave', img: 'images/sapphire-wave.png', personality: 'The tide checks with her first.', court: 'sapphire-court' },
+        { gem: 'Sapphire', name: 'Sapphire Moonlit', img: 'images/sapphire-moonlit.png', personality: 'Moves best in the dark. Looks best in blue.', court: 'sapphire-court' },
+        { gem: 'Sapphire', name: 'Sapphire Slumber', img: 'images/sapphire-slumber.png', personality: "Even asleep, she's in charge.", court: 'sapphire-court' },
+        { gem: 'Sapphire', name: 'Sapphire Winter', img: 'images/sapphire-winter.jpeg', personality: 'Arrived with the frost. The frost stayed.', court: 'sapphire-court' },
+        { gem: 'Sapphire', name: 'Sapphire NYC', img: 'images/sapphire-nyc.png', personality: "Every city is hers. She's just visiting.", court: 'sapphire-court' },
+        { gem: 'Sapphire', name: 'Sapphire Snowfall', img: 'images/sapphire-snowfall.png', personality: 'The quietest thing in the forest. Not the smallest.', court: 'sapphire-court' },
+        { gem: 'Diamond', name: 'Diamond Palace', img: 'images/diamond-palace.png', personality: 'Arrived before you. Will leave after everyone else.', court: 'diamond-court' },
+        { gem: 'Crystal', name: 'Crystal Throne', img: 'images/crystal-throne.png', personality: 'The throne was always going to be hers.', court: 'diamond-court' },
+        { gem: 'Diamond', name: 'Diamond Aurora', img: 'images/diamond-aurora.png', personality: 'Lives where the sky does what she asks.', court: 'diamond-court' },
+        { gem: 'Diamond', name: 'Diamond Ice Cave', img: 'images/diamond-ice-cave.png', personality: "Cold isn't a temperature. It's a posture.", court: 'diamond-court' },
+        { gem: 'Diamond', name: 'Diamond Pure', img: 'images/diamond-pure.png', personality: 'Stripped everything back. Still perfect.', court: 'diamond-court' },
+        { gem: 'Diamond', name: 'Diamond Paris', img: 'images/diamond-paris.png', personality: 'Unimpressed by Paris. Went back anyway.', court: 'diamond-court' },
+        { gem: 'Diamond', name: 'Diamond Kitten', img: 'images/diamond-kitten.jpeg', personality: 'Small. Surrounded by light. Absolutely aware of both.', court: 'diamond-court' },
+        { gem: 'Citrine', name: 'Citrine Festival', img: 'images/citrine-festival.png', personality: 'Came for the music. Became the music.', court: 'citrine-court' },
+        { gem: 'Citrine', name: 'Citrine Ballroom', img: 'images/citrine-ballroom.png', personality: 'The chandelier dims when she enters. On purpose.', court: 'citrine-court' },
+        { gem: 'Citrine', name: 'Citrine Sunrise', img: 'images/citrine-sunrise.png', personality: 'Up before everyone else. For the light, not the coffee.', court: 'citrine-court' },
+        { gem: 'Citrine', name: 'Citrine Amber', img: 'images/citrine-amber.png', personality: 'Warm-blooded. The warmest in the room.', court: 'citrine-court' },
+        { gem: 'Citrine', name: 'Citrine Temple', img: 'images/citrine-temple.png', personality: 'Tiny, divine, and fully aware of the difference.', court: 'citrine-court' },
+        { gem: 'Citrine', name: 'Citrine Leap', img: 'images/citrine-leap.png', personality: "Joy is a strategy. She's very good at it.", court: 'citrine-court' },
+        { gem: 'Opal', name: 'Opal Rainbow', img: 'images/opal-rainbow.png', personality: 'No two moments the same. Possibly three moods right now.', court: 'opal-court' },
+        { gem: 'Opal', name: 'Opal Mermaid', img: 'images/opal-mermaid.png', personality: 'Neither here nor sea. Somehow both.', court: 'opal-court' },
+        { gem: 'Opal', name: 'Opal Clouds', img: 'images/opal-clouds.png', personality: 'Lives above the weather. Emotionally and literally.', court: 'opal-court' },
+        { gem: 'Opal', name: 'Opal Sunset', img: 'images/opal-sunset.png', personality: 'Catches the light differently every time. On purpose.', court: 'opal-court' },
+        { gem: 'Opal', name: 'Opal Dawn', img: 'images/opal-dawn.png', personality: 'Always just beginning. Always the most beautiful part.', court: 'opal-court' },
+        { gem: 'Opal', name: 'Opal Lounge', img: 'images/opal-lounge.png', personality: 'Horizontal. Unbothered. Still in charge.', court: 'opal-court' },
+        { gem: 'Rose Quartz', name: 'Pink Cloud', img: 'images/pink-cloud.png', personality: 'Main character. Every scene. On purpose.', court: 'rose-quartz-court' },
+        { gem: 'Rose Quartz', name: 'Rose Quartz Blossom', img: 'images/rose-quartz-blossom.png', personality: 'The moon shows up for her. It\'s mutual.', court: 'rose-quartz-court' },
+        { gem: 'Rose Quartz', name: 'Rose Quartz Twins', img: 'images/rose-quartz-twins.png', personality: 'Two of her. The world is still outnumbered.', court: 'rose-quartz-court' },
+        { gem: 'Rose Quartz', name: 'Rose Quartz Garden', img: 'images/rose-quartz-garden.png', personality: "Soft. Don't mistake that for small.", court: 'rose-quartz-court' },
+        { gem: 'Rose Quartz', name: 'Rose Quartz Petals', img: 'images/rose-quartz-petals.png', personality: "Everything she touches blooms. She's noticed.", court: 'rose-quartz-court' },
+        { gem: 'Rose Quartz', name: 'Rose Quartz Wings', img: 'images/rose-quartz-wings.png', personality: 'Wings optional. Magic not.', court: 'rose-quartz-court' },
+        { gem: 'Ruby', name: 'Ruby Throne', img: 'images/ruby-throne.png', personality: 'The cards were already in her favor. She played anyway.', court: 'ruby-court' },
+        { gem: 'Ruby', name: 'Ruby Ballroom', img: 'images/ruby-ballroom.png', personality: 'The red is hers. All of it.', court: 'ruby-court' },
+        { gem: 'Ruby', name: 'Ruby Velvet', img: 'images/ruby-velvet.png', personality: 'Soft chair. Hard eyes. Clear hierarchy.', court: 'ruby-court' },
+        { gem: 'Garnet', name: 'Garnet Phoenix', img: 'images/garnet-phoenix.png', personality: 'Burns down. Always comes back. Every time.', court: 'garnet-court' },
+        { gem: 'Garnet', name: 'Garnet Lava', img: 'images/garnet-lava.png', personality: 'Everything beneath her surface is fire.', court: 'garnet-court' },
+        { gem: 'Garnet', name: 'Garnet Golden', img: 'images/garnet-golden.png', personality: 'More gold than garnet. More fire than both.', court: 'garnet-court' },
+        { gem: 'Aquamarine', name: 'Aquamarine Shore', img: 'images/aquamarine-shore.png', personality: 'Belongs to the edge. Where land gives up and water takes over.', court: 'aquamarine-court' },
+        { gem: 'Aquamarine', name: 'Aquamarine Beach', img: 'images/aquamarine-beach.png', personality: 'Warm sand. Cool gem. Perfect tension.', court: 'aquamarine-court' },
+        { gem: 'Aquamarine', name: 'Aquamarine Window', img: 'images/aquamarine-window.png', personality: 'Watching something outside the frame. Unbothered either way.', court: 'aquamarine-court' },
+        { gem: 'Aquamarine', name: 'Aquamarine Golden', img: 'images/aquamarine-golden.png', personality: "One blue stone in all that gold. It's the one you look at.", court: 'aquamarine-court' },
+        { gem: 'Obsidian', name: 'Obsidian Shadow', img: 'images/obsidian-shadow.png', personality: "You won't see her coming. That's the plan.", court: 'obsidian-court' },
+        { gem: 'Obsidian', name: 'Obsidian Sanctum', img: 'images/obsidian-sanctum.png', personality: 'Candles not for light. For atmosphere.', court: 'obsidian-court' },
+        { gem: 'Obsidian', name: 'Obsidian Neon', img: 'images/obsidian-neon.png', personality: "The future is dark. She's fine with that.", court: 'obsidian-court' },
+        { gem: 'Obsidian', name: 'Obsidian Emerald', img: 'images/obsidian-emerald.png', personality: "Green eyes in the dark. That's all the warning you get.", court: 'obsidian-court' },
+        { gem: 'Pearl', name: 'Moonlit Pearl', img: 'images/moonlit-pearl.png', personality: "Knows things she shouldn't. Never says how.", court: 'pearl-court' },
+        { gem: 'Pearl', name: 'Pearl Moonshore', img: 'images/pearl-moonshore.png', personality: 'The ocean tells her things. She keeps them.', court: 'pearl-court' },
+        { gem: 'Pearl', name: 'Pearl Rose', img: 'images/pearl-rose.png', personality: "Gentle isn't weak. She'll explain this once.", court: 'pearl-court' },
+        { gem: 'Moonstone', name: 'Cosmic Moon', img: 'images/cosmic-moon.png', personality: 'Between here and unreachable. Both, somehow.', court: 'moonstone-court' },
+        { gem: 'Moonstone', name: 'Moonstone Astral', img: 'images/moonstone-astral.png', personality: 'Reads the stars. The stars take notes.', court: 'moonstone-court' },
+        { gem: 'Moonstone', name: 'Moonstone Eclipse', img: 'images/moonstone-eclipse.png', personality: 'Rarest thing in the sky. Also here, apparently.', court: 'moonstone-court' },
+        { gem: 'Moonstone', name: 'Moonstone Kitten', img: 'images/moonstone-kitten.png', personality: 'Small. New moon energy. Watch this space.', court: 'moonstone-court' },
+        { gem: 'Peridot', name: 'Peridot Garden', img: 'images/peridot-garden.png', personality: 'The garden does what she says. The fountain too.', court: 'peridot-court' },
+        { gem: 'Amethyst', name: 'Amethyst Storm', img: 'images/amethyst-storm.png', personality: 'Arrived like a signal from somewhere else.', court: 'amethyst-court' },
+        { gem: 'Amethyst', name: 'Amethyst Cosmos', img: 'images/amethyst-cosmos.png', personality: 'Not falling. Drifting. Totally intentional.', court: 'amethyst-court' }
+      ];
+      // ×17 step: coprime with 65, so all 65 images are visited before repeating.
+      // Consecutive weeks are never adjacent in the list.
+      var weekNum = Math.floor(Date.now() / (7 * 24 * 60 * 60 * 1000));
+      var q = gallery[(weekNum * 17) % gallery.length];
+      var container = document.getElementById('featured-queen-inner');
+      if (!container) return;
+      container.innerHTML =
+        '<div class="featured-queen-img">' +
+          '<img src="' + q.img + '" alt="' + q.name + ' — Crystal Kitty Club" loading="lazy">' +
+        '</div>' +
+        '<div class="featured-queen-text">' +
+          '<p class="featured-queen-gem">✦ ' + q.gem + '</p>' +
+          '<h2 class="featured-queen-name">' + q.name + '</h2>' +
+          '<p class="featured-queen-personality">' + q.personality + '</p>' +
+          '<a href="gallery.html#' + q.court + '" class="btn btn-primary">View the Court ✦</a>' +
+        '</div>';
+    })();
+  </script>
+
   <!-- Gallery Preview -->
   <section class="gallery-preview">
     <div class="container">

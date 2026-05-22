@@ -4,16 +4,15 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Gallery — Crystal Kitty Club</title>
-  <meta name="description" content="Meet the gem queens of Crystal Kitty Club — a gallery of luxury AI-generated gemstone cats. Diamond, emerald, opal, moonstone, and more.">
+  <meta name="description" content="The Gem Courts of Crystal Kitty Club — a living gallery of luxury AI-generated gemstone cats organised by court. Emerald, Sapphire, Diamond, Ruby, Opal, and more.">
   <link rel="canonical" href="https://crystalkittyclub.com/gallery.html">
   <link rel="icon" type="image/x-icon" href="favicon.ico">
   <link rel="icon" type="image/png" sizes="32x32" href="favicon-32.png">
   <link rel="icon" type="image/png" sizes="64x64" href="favicon-64.png">
-  <meta property="og:title" content="Gallery — Crystal Kitty Club">
-  <meta property="og:description" content="Meet the gem queens. Diamond, emerald, opal, moonstone — each one a luxury AI-generated crystal cat.">
+  <meta property="og:title" content="The Gem Courts — Crystal Kitty Club">
+  <meta property="og:description" content="Every gem has its court. Browse the living gallery of luxury AI-generated crystal cats.">
   <meta property="og:image" content="https://crystalkittyclub.com/images/opal-rainbow.png">
   <meta property="og:url" content="https://crystalkittyclub.com/gallery.html">
-  <!-- Google tag (gtag.js) -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-GCRT8LR4WW"></script>
   <script>
     window.dataLayer = window.dataLayer || [];
@@ -25,6 +24,75 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Raleway:wght@300;400;500;600&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="styles.css">
+  <style>
+    .court-nav {
+      position: sticky;
+      top: 60px;
+      z-index: 90;
+      background: rgba(10,8,18,0.92);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--border);
+      padding: 0.75rem 1.25rem;
+    }
+    .court-nav-inner {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+      max-width: 1100px;
+      margin: 0 auto;
+    }
+    .court-pill {
+      font-family: var(--font-heading);
+      font-size: 0.65rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.7);
+      padding: 0.3rem 0.85rem;
+      border: 1px solid rgba(255,255,255,0.12);
+      border-radius: 20px;
+      text-decoration: none;
+      transition: all 0.2s ease;
+      white-space: nowrap;
+    }
+    .court-pill:hover {
+      color: #fff;
+      border-color: var(--pill-color, var(--gold));
+      background: rgba(255,255,255,0.04);
+      box-shadow: 0 0 12px color-mix(in srgb, var(--pill-color, var(--gold)) 30%, transparent);
+    }
+    .court-section {
+      padding: 4rem 1.25rem 2rem;
+      border-top: 1px solid var(--border);
+    }
+    .court-section:first-of-type { border-top: none; }
+    .court-header {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      margin-bottom: 2rem;
+    }
+    .court-gem-dot {
+      width: 12px;
+      height: 12px;
+      border-radius: 50%;
+      flex-shrink: 0;
+      box-shadow: 0 0 10px currentColor;
+    }
+    .court-title {
+      font-family: var(--font-heading);
+      font-size: clamp(1.2rem, 2.5vw, 1.6rem);
+      color: #fff;
+      letter-spacing: 0.06em;
+      margin: 0;
+    }
+    .court-count {
+      font-family: var(--font-body);
+      font-size: 0.75rem;
+      color: var(--text-muted);
+      letter-spacing: 0.06em;
+      margin-left: auto;
+    }
+  </style>
 </head>
 <body>
 
@@ -51,62 +119,40 @@
   </nav>
 
   <div class="page-hero">
-    <p class="eyebrow">✦ the collection ✦</p>
-    <h1>The Gem Queens</h1>
-    <p>Every gem has a queen. New royalty added every week — follow along to see them arrive.</p>
+    <p class="eyebrow">✦ the courts ✦</p>
+    <h1>The Gem Courts</h1>
+    <p>Every gem has its court. New royalty added every week — follow along to see them arrive.</p>
   </div>
 
-  <section class="gallery-full">
+  <!-- Court navigation -->
+  <nav class="court-nav" aria-label="Jump to court">
+    <div class="court-nav-inner">
+        <a href="#emerald-court" class="court-pill" style="--pill-color:#50c878">Emerald</a>
+        <a href="#sapphire-court" class="court-pill" style="--pill-color:#2471a3">Sapphire</a>
+        <a href="#diamond-court" class="court-pill" style="--pill-color:#a8d8ea">Diamond</a>
+        <a href="#citrine-court" class="court-pill" style="--pill-color:#f5b041">Citrine</a>
+        <a href="#opal-court" class="court-pill" style="--pill-color:#c39bd3">Opal</a>
+        <a href="#rose-quartz-court" class="court-pill" style="--pill-color:#e8a0b0">Rose Quartz</a>
+        <a href="#ruby-court" class="court-pill" style="--pill-color:#c0392b">Ruby</a>
+        <a href="#garnet-court" class="court-pill" style="--pill-color:#922b21">Garnet</a>
+        <a href="#aquamarine-court" class="court-pill" style="--pill-color:#1abc9c">Aquamarine</a>
+        <a href="#obsidian-court" class="court-pill" style="--pill-color:#2c2c2c">Obsidian</a>
+        <a href="#pearl-court" class="court-pill" style="--pill-color:#f0ead6">Pearl</a>
+        <a href="#moonstone-court" class="court-pill" style="--pill-color:#8e9eab">Moonstone</a>
+        <a href="#peridot-court" class="court-pill" style="--pill-color:#a8d8a8">Peridot</a>
+        <a href="#amethyst-court" class="court-pill" style="--pill-color:#9b59b6">Amethyst</a>
+    </div>
+  </nav>
+
+
+  <section class="court-section" id="emerald-court">
     <div class="container">
+      <div class="court-header">
+        <span class="court-gem-dot" style="background:#50c878"></span>
+        <h2 class="court-title">Emerald Court</h2>
+        <span class="court-count">8 pieces</span>
+      </div>
       <div class="gallery-grid">
-        <div class="gallery-item">
-          <img src="images/opal-rainbow.png" alt="Opal Rainbow Queen — iridescent gem cat with rainbow fur and gold ear cuffs" loading="lazy">
-          <div class="gallery-overlay">
-            <p class="gallery-overlay-gem">✦ Opal</p>
-            <p class="gallery-overlay-name">Opal Rainbow</p>
-            <p class="gallery-overlay-personality">No two moments the same. Possibly three moods right now.</p>
-          </div>
-        </div>
-        <div class="gallery-item">
-          <img src="images/diamond-palace.png" alt="Diamond Palace Queen — luxury cat with gold crown and diamond jewelry by candlelight" loading="lazy">
-          <div class="gallery-overlay">
-            <p class="gallery-overlay-gem">✦ Diamond</p>
-            <p class="gallery-overlay-name">Diamond Palace</p>
-            <p class="gallery-overlay-personality">Arrived before you. Will leave after everyone else.</p>
-          </div>
-        </div>
-        <div class="gallery-item">
-          <img src="images/crystal-throne.png" alt="Crystal Throne Queen — white cat on crystal throne with diamond chains" loading="lazy">
-          <div class="gallery-overlay">
-            <p class="gallery-overlay-gem">✦ Crystal</p>
-            <p class="gallery-overlay-name">Crystal Throne</p>
-            <p class="gallery-overlay-personality">The throne was always going to be hers.</p>
-          </div>
-        </div>
-        <div class="gallery-item">
-          <img src="images/moonlit-pearl.png" alt="Moonlit Pearl Queen — blue-grey cat on moonlit beach with moonstone crown" loading="lazy">
-          <div class="gallery-overlay">
-            <p class="gallery-overlay-gem">✦ Pearl</p>
-            <p class="gallery-overlay-name">Moonlit Pearl</p>
-            <p class="gallery-overlay-personality">Knows things she shouldn't. Never says how.</p>
-          </div>
-        </div>
-        <div class="gallery-item">
-          <img src="images/cosmic-moon.png" alt="Cosmic Moon Queen — grey cat walking on the moon with galaxy necklace" loading="lazy">
-          <div class="gallery-overlay">
-            <p class="gallery-overlay-gem">✦ Moonstone</p>
-            <p class="gallery-overlay-name">Cosmic Moon</p>
-            <p class="gallery-overlay-personality">Between here and unreachable. Both, somehow.</p>
-          </div>
-        </div>
-        <div class="gallery-item">
-          <img src="images/pink-cloud.png" alt="Pink Cloud Queen — white fluffy cat on pink clouds with heart tiara" loading="lazy">
-          <div class="gallery-overlay">
-            <p class="gallery-overlay-gem">✦ Rose Quartz</p>
-            <p class="gallery-overlay-name">Pink Cloud</p>
-            <p class="gallery-overlay-personality">Main character. Every scene. On purpose.</p>
-          </div>
-        </div>
         <div class="gallery-item">
           <img src="images/emerald-forest.png" alt="Emerald Forest Queen — Bengal cat in enchanted forest with emerald cape" loading="lazy">
           <div class="gallery-overlay">
@@ -115,16 +161,674 @@
             <p class="gallery-overlay-personality">Ancient. Patient. Absolutely watching.</p>
           </div>
         </div>
-        <!-- Add new gallery items here as you create more cats:
         <div class="gallery-item">
-          <img src="images/YOUR-IMAGE.png" alt="Description" loading="lazy">
+          <img src="images/emerald-sovereign.png" alt="Emerald Sovereign — Maine Coon on mossy throne in sunlit forest" loading="lazy">
           <div class="gallery-overlay">
-            <p class="gallery-overlay-gem">✦ Gem Type</p>
-            <p class="gallery-overlay-name">Queen Name</p>
-            <p class="gallery-overlay-personality">Personality one-liner.</p>
+            <p class="gallery-overlay-gem">✦ Emerald</p>
+            <p class="gallery-overlay-name">Emerald Sovereign</p>
+            <p class="gallery-overlay-personality">Doesn't ask for the crown. Already has it.</p>
           </div>
         </div>
-        -->
+        <div class="gallery-item">
+          <img src="images/emerald-waterfall.jpeg" alt="Emerald Waterfall — grey cat adorned with emerald gems at forest waterfall" loading="lazy">
+          <div class="gallery-overlay">
+            <p class="gallery-overlay-gem">✦ Emerald</p>
+            <p class="gallery-overlay-name">Emerald Waterfall</p>
+            <p class="gallery-overlay-personality">Runs deep. Runs fast. You can't keep up.</p>
+          </div>
+        </div>
+        <div class="gallery-item">
+          <img src="images/emerald-leap.png" alt="Emerald Leap — white cat bounding through glowing green jungle" loading="lazy">
+          <div class="gallery-overlay">
+            <p class="gallery-overlay-gem">✦ Emerald</p>
+            <p class="gallery-overlay-name">Emerald Leap</p>
+            <p class="gallery-overlay-personality">Never stays in one place long enough to be caught.</p>
+          </div>
+        </div>
+        <div class="gallery-item">
+          <img src="images/emerald-jungle.png" alt="Emerald Jungle — kitten in glowing emerald jungle at night" loading="lazy">
+          <div class="gallery-overlay">
+            <p class="gallery-overlay-gem">✦ Emerald</p>
+            <p class="gallery-overlay-name">Emerald Jungle</p>
+            <p class="gallery-overlay-personality">Young. The forest already knows her name.</p>
+          </div>
+        </div>
+        <div class="gallery-item">
+          <img src="images/emerald-bengal.png" alt="Emerald Bengal — Bengal cat with emerald cape in bioluminescent forest" loading="lazy">
+          <div class="gallery-overlay">
+            <p class="gallery-overlay-gem">✦ Emerald</p>
+            <p class="gallery-overlay-name">Emerald Bengal</p>
+            <p class="gallery-overlay-personality">Wild by design. Owned by no one.</p>
+          </div>
+        </div>
+        <div class="gallery-item">
+          <img src="images/emerald-treasure.png" alt="Emerald Treasure — golden cat draped in gold chains with emerald pendant" loading="lazy">
+          <div class="gallery-overlay">
+            <p class="gallery-overlay-gem">✦ Emerald</p>
+            <p class="gallery-overlay-name">Emerald Treasure</p>
+            <p class="gallery-overlay-personality">All that gold, and she still chose green.</p>
+          </div>
+        </div>
+        <div class="gallery-item">
+          <img src="images/emerald-white.png" alt="Emerald White — white cat walking with emerald crown and necklace" loading="lazy">
+          <div class="gallery-overlay">
+            <p class="gallery-overlay-gem">✦ Emerald</p>
+            <p class="gallery-overlay-name">Emerald White</p>
+            <p class="gallery-overlay-personality">Pure as snow. Sharp as glass.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="court-section" id="sapphire-court">
+    <div class="container">
+      <div class="court-header">
+        <span class="court-gem-dot" style="background:#2471a3"></span>
+        <h2 class="court-title">Sapphire Court</h2>
+        <span class="court-count">8 pieces</span>
+      </div>
+      <div class="gallery-grid">
+        <div class="gallery-item">
+          <img src="images/sapphire-palace.png" alt="Sapphire Palace — grey cat on moonlit palace steps in sapphire cloak" loading="lazy">
+          <div class="gallery-overlay">
+            <p class="gallery-overlay-gem">✦ Sapphire</p>
+            <p class="gallery-overlay-name">Sapphire Palace</p>
+            <p class="gallery-overlay-personality">The palace was cold before she arrived. She didn't change that.</p>
+          </div>
+        </div>
+        <div class="gallery-item">
+          <img src="images/sapphire-galaxy.png" alt="Sapphire Galaxy — Siamese cat with sapphire crown against galaxy" loading="lazy">
+          <div class="gallery-overlay">
+            <p class="gallery-overlay-gem">✦ Sapphire</p>
+            <p class="gallery-overlay-name">Sapphire Galaxy</p>
+            <p class="gallery-overlay-personality">Born in the deep end of the universe. Prefers it there.</p>
+          </div>
+        </div>
+        <div class="gallery-item">
+          <img src="images/sapphire-wave.png" alt="Sapphire Wave — blue cat commanding ocean waves at sunset" loading="lazy">
+          <div class="gallery-overlay">
+            <p class="gallery-overlay-gem">✦ Sapphire</p>
+            <p class="gallery-overlay-name">Sapphire Wave</p>
+            <p class="gallery-overlay-personality">The tide checks with her first.</p>
+          </div>
+        </div>
+        <div class="gallery-item">
+          <img src="images/sapphire-moonlit.png" alt="Sapphire Moonlit — white cat on moonlit terrace with sapphire gems" loading="lazy">
+          <div class="gallery-overlay">
+            <p class="gallery-overlay-gem">✦ Sapphire</p>
+            <p class="gallery-overlay-name">Sapphire Moonlit</p>
+            <p class="gallery-overlay-personality">Moves best in the dark. Looks best in blue.</p>
+          </div>
+        </div>
+        <div class="gallery-item">
+          <img src="images/sapphire-slumber.png" alt="Sapphire Slumber — grey cat sleeping on royal blue silk pillows" loading="lazy">
+          <div class="gallery-overlay">
+            <p class="gallery-overlay-gem">✦ Sapphire</p>
+            <p class="gallery-overlay-name">Sapphire Slumber</p>
+            <p class="gallery-overlay-personality">Even asleep, she's in charge.</p>
+          </div>
+        </div>
+        <div class="gallery-item">
+          <img src="images/sapphire-winter.jpeg" alt="Sapphire Winter — white kitten in snow with sapphire accents and fairy-tale castle" loading="lazy">
+          <div class="gallery-overlay">
+            <p class="gallery-overlay-gem">✦ Sapphire</p>
+            <p class="gallery-overlay-name">Sapphire Winter</p>
+            <p class="gallery-overlay-personality">Arrived with the frost. The frost stayed.</p>
+          </div>
+        </div>
+        <div class="gallery-item">
+          <img src="images/sapphire-nyc.png" alt="Sapphire NYC — silver cat with sapphire necklace before New York skyline" loading="lazy">
+          <div class="gallery-overlay">
+            <p class="gallery-overlay-gem">✦ Sapphire</p>
+            <p class="gallery-overlay-name">Sapphire NYC</p>
+            <p class="gallery-overlay-personality">Every city is hers. She's just visiting.</p>
+          </div>
+        </div>
+        <div class="gallery-item">
+          <img src="images/sapphire-snowfall.png" alt="Sapphire Snowfall — grey cat with sapphire necklace in snowy forest" loading="lazy">
+          <div class="gallery-overlay">
+            <p class="gallery-overlay-gem">✦ Sapphire</p>
+            <p class="gallery-overlay-name">Sapphire Snowfall</p>
+            <p class="gallery-overlay-personality">The quietest thing in the forest. Not the smallest.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="court-section" id="diamond-court">
+    <div class="container">
+      <div class="court-header">
+        <span class="court-gem-dot" style="background:#a8d8ea"></span>
+        <h2 class="court-title">Diamond Court</h2>
+        <span class="court-count">7 pieces</span>
+      </div>
+      <div class="gallery-grid">
+        <div class="gallery-item">
+          <img src="images/diamond-palace.png" alt="Diamond Palace — luxury cat with gold crown by candlelight" loading="lazy">
+          <div class="gallery-overlay">
+            <p class="gallery-overlay-gem">✦ Diamond</p>
+            <p class="gallery-overlay-name">Diamond Palace</p>
+            <p class="gallery-overlay-personality">Arrived before you. Will leave after everyone else.</p>
+          </div>
+        </div>
+        <div class="gallery-item">
+          <img src="images/crystal-throne.png" alt="Crystal Throne — white cat on crystal throne with diamond chains" loading="lazy">
+          <div class="gallery-overlay">
+            <p class="gallery-overlay-gem">✦ Crystal</p>
+            <p class="gallery-overlay-name">Crystal Throne</p>
+            <p class="gallery-overlay-personality">The throne was always going to be hers.</p>
+          </div>
+        </div>
+        <div class="gallery-item">
+          <img src="images/diamond-aurora.png" alt="Diamond Aurora — white cat in ice palace with aurora borealis crown" loading="lazy">
+          <div class="gallery-overlay">
+            <p class="gallery-overlay-gem">✦ Diamond</p>
+            <p class="gallery-overlay-name">Diamond Aurora</p>
+            <p class="gallery-overlay-personality">Lives where the sky does what she asks.</p>
+          </div>
+        </div>
+        <div class="gallery-item">
+          <img src="images/diamond-ice-cave.png" alt="Diamond Ice Cave — white fluffy cat in ice cave with diamond crown" loading="lazy">
+          <div class="gallery-overlay">
+            <p class="gallery-overlay-gem">✦ Diamond</p>
+            <p class="gallery-overlay-name">Diamond Ice Cave</p>
+            <p class="gallery-overlay-personality">Cold isn't a temperature. It's a posture.</p>
+          </div>
+        </div>
+        <div class="gallery-item">
+          <img src="images/diamond-pure.png" alt="Diamond Pure — white British Shorthair with diamond tennis necklace" loading="lazy">
+          <div class="gallery-overlay">
+            <p class="gallery-overlay-gem">✦ Diamond</p>
+            <p class="gallery-overlay-name">Diamond Pure</p>
+            <p class="gallery-overlay-personality">Stripped everything back. Still perfect.</p>
+          </div>
+        </div>
+        <div class="gallery-item">
+          <img src="images/diamond-paris.png" alt="Diamond Paris — elegant cat with diamond necklace before the Eiffel Tower" loading="lazy">
+          <div class="gallery-overlay">
+            <p class="gallery-overlay-gem">✦ Diamond</p>
+            <p class="gallery-overlay-name">Diamond Paris</p>
+            <p class="gallery-overlay-personality">Unimpressed by Paris. Went back anyway.</p>
+          </div>
+        </div>
+        <div class="gallery-item">
+          <img src="images/diamond-kitten.jpeg" alt="Diamond Kitten — silver kitten surrounded by rainbow crystal gems" loading="lazy">
+          <div class="gallery-overlay">
+            <p class="gallery-overlay-gem">✦ Diamond</p>
+            <p class="gallery-overlay-name">Diamond Kitten</p>
+            <p class="gallery-overlay-personality">Small. Surrounded by light. Absolutely aware of both.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="court-section" id="citrine-court">
+    <div class="container">
+      <div class="court-header">
+        <span class="court-gem-dot" style="background:#f5b041"></span>
+        <h2 class="court-title">Citrine Court</h2>
+        <span class="court-count">6 pieces</span>
+      </div>
+      <div class="gallery-grid">
+        <div class="gallery-item">
+          <img src="images/citrine-festival.png" alt="Citrine Festival — golden cat with arms raised at sunset festival" loading="lazy">
+          <div class="gallery-overlay">
+            <p class="gallery-overlay-gem">✦ Citrine</p>
+            <p class="gallery-overlay-name">Citrine Festival</p>
+            <p class="gallery-overlay-personality">Came for the music. Became the music.</p>
+          </div>
+        </div>
+        <div class="gallery-item">
+          <img src="images/citrine-ballroom.png" alt="Citrine Ballroom — golden fluffy cat in grand ballroom with amber gems" loading="lazy">
+          <div class="gallery-overlay">
+            <p class="gallery-overlay-gem">✦ Citrine</p>
+            <p class="gallery-overlay-name">Citrine Ballroom</p>
+            <p class="gallery-overlay-personality">The chandelier dims when she enters. On purpose.</p>
+          </div>
+        </div>
+        <div class="gallery-item">
+          <img src="images/citrine-sunrise.png" alt="Citrine Sunrise — golden cat walking through golden palace at sunrise" loading="lazy">
+          <div class="gallery-overlay">
+            <p class="gallery-overlay-gem">✦ Citrine</p>
+            <p class="gallery-overlay-name">Citrine Sunrise</p>
+            <p class="gallery-overlay-personality">Up before everyone else. For the light, not the coffee.</p>
+          </div>
+        </div>
+        <div class="gallery-item">
+          <img src="images/citrine-amber.png" alt="Citrine Amber — orange Abyssinian in golden palace at warm sunset" loading="lazy">
+          <div class="gallery-overlay">
+            <p class="gallery-overlay-gem">✦ Citrine</p>
+            <p class="gallery-overlay-name">Citrine Amber</p>
+            <p class="gallery-overlay-personality">Warm-blooded. The warmest in the room.</p>
+          </div>
+        </div>
+        <div class="gallery-item">
+          <img src="images/citrine-temple.png" alt="Citrine Temple — orange kitten in golden temple with citrine gems" loading="lazy">
+          <div class="gallery-overlay">
+            <p class="gallery-overlay-gem">✦ Citrine</p>
+            <p class="gallery-overlay-name">Citrine Temple</p>
+            <p class="gallery-overlay-personality">Tiny, divine, and fully aware of the difference.</p>
+          </div>
+        </div>
+        <div class="gallery-item">
+          <img src="images/citrine-leap.png" alt="Citrine Leap — orange Maine Coon leaping through enchanted garden with crystals" loading="lazy">
+          <div class="gallery-overlay">
+            <p class="gallery-overlay-gem">✦ Citrine</p>
+            <p class="gallery-overlay-name">Citrine Leap</p>
+            <p class="gallery-overlay-personality">Joy is a strategy. She's very good at it.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="court-section" id="opal-court">
+    <div class="container">
+      <div class="court-header">
+        <span class="court-gem-dot" style="background:#c39bd3"></span>
+        <h2 class="court-title">Opal Court</h2>
+        <span class="court-count">6 pieces</span>
+      </div>
+      <div class="gallery-grid">
+        <div class="gallery-item">
+          <img src="images/opal-rainbow.png" alt="Opal Rainbow — iridescent cat with rainbow fur and gold ear cuffs" loading="lazy">
+          <div class="gallery-overlay">
+            <p class="gallery-overlay-gem">✦ Opal</p>
+            <p class="gallery-overlay-name">Opal Rainbow</p>
+            <p class="gallery-overlay-personality">No two moments the same. Possibly three moods right now.</p>
+          </div>
+        </div>
+        <div class="gallery-item">
+          <img src="images/opal-mermaid.png" alt="Opal Mermaid — white fluffy cat with iridescent mermaid tail at ocean sunset" loading="lazy">
+          <div class="gallery-overlay">
+            <p class="gallery-overlay-gem">✦ Opal</p>
+            <p class="gallery-overlay-name">Opal Mermaid</p>
+            <p class="gallery-overlay-personality">Neither here nor sea. Somehow both.</p>
+          </div>
+        </div>
+        <div class="gallery-item">
+          <img src="images/opal-clouds.png" alt="Opal Clouds — white cat resting on lavender clouds with iridescent gems" loading="lazy">
+          <div class="gallery-overlay">
+            <p class="gallery-overlay-gem">✦ Opal</p>
+            <p class="gallery-overlay-name">Opal Clouds</p>
+            <p class="gallery-overlay-personality">Lives above the weather. Emotionally and literally.</p>
+          </div>
+        </div>
+        <div class="gallery-item">
+          <img src="images/opal-sunset.png" alt="Opal Sunset — white fluffy cat at palace sunset with iridescent gems" loading="lazy">
+          <div class="gallery-overlay">
+            <p class="gallery-overlay-gem">✦ Opal</p>
+            <p class="gallery-overlay-name">Opal Sunset</p>
+            <p class="gallery-overlay-personality">Catches the light differently every time. On purpose.</p>
+          </div>
+        </div>
+        <div class="gallery-item">
+          <img src="images/opal-dawn.png" alt="Opal Dawn — white kitten with golden crown at coastal sunrise" loading="lazy">
+          <div class="gallery-overlay">
+            <p class="gallery-overlay-gem">✦ Opal</p>
+            <p class="gallery-overlay-name">Opal Dawn</p>
+            <p class="gallery-overlay-personality">Always just beginning. Always the most beautiful part.</p>
+          </div>
+        </div>
+        <div class="gallery-item">
+          <img src="images/opal-lounge.png" alt="Opal Lounge — cream Ragdoll reclining with iridescent gems by candlelight" loading="lazy">
+          <div class="gallery-overlay">
+            <p class="gallery-overlay-gem">✦ Opal</p>
+            <p class="gallery-overlay-name">Opal Lounge</p>
+            <p class="gallery-overlay-personality">Horizontal. Unbothered. Still in charge.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="court-section" id="rose-quartz-court">
+    <div class="container">
+      <div class="court-header">
+        <span class="court-gem-dot" style="background:#e8a0b0"></span>
+        <h2 class="court-title">Rose Quartz Court</h2>
+        <span class="court-count">6 pieces</span>
+      </div>
+      <div class="gallery-grid">
+        <div class="gallery-item">
+          <img src="images/pink-cloud.png" alt="Pink Cloud — white fluffy cat on pink clouds with heart tiara" loading="lazy">
+          <div class="gallery-overlay">
+            <p class="gallery-overlay-gem">✦ Rose Quartz</p>
+            <p class="gallery-overlay-name">Pink Cloud</p>
+            <p class="gallery-overlay-personality">Main character. Every scene. On purpose.</p>
+          </div>
+        </div>
+        <div class="gallery-item">
+          <img src="images/rose-quartz-blossom.png" alt="Rose Quartz Blossom — pink cat in moonlit Japanese garden with cherry blossoms" loading="lazy">
+          <div class="gallery-overlay">
+            <p class="gallery-overlay-gem">✦ Rose Quartz</p>
+            <p class="gallery-overlay-name">Rose Quartz Blossom</p>
+            <p class="gallery-overlay-personality">The moon shows up for her. It's mutual.</p>
+          </div>
+        </div>
+        <div class="gallery-item">
+          <img src="images/rose-quartz-twins.png" alt="Rose Quartz Twins — two pink cats walking through rose garden at sunset" loading="lazy">
+          <div class="gallery-overlay">
+            <p class="gallery-overlay-gem">✦ Rose Quartz</p>
+            <p class="gallery-overlay-name">Rose Quartz Twins</p>
+            <p class="gallery-overlay-personality">Two of her. The world is still outnumbered.</p>
+          </div>
+        </div>
+        <div class="gallery-item">
+          <img src="images/rose-quartz-garden.png" alt="Rose Quartz Garden — pink Scottish Fold surrounded by pink roses and gems" loading="lazy">
+          <div class="gallery-overlay">
+            <p class="gallery-overlay-gem">✦ Rose Quartz</p>
+            <p class="gallery-overlay-name">Rose Quartz Garden</p>
+            <p class="gallery-overlay-personality">Soft. Don't mistake that for small.</p>
+          </div>
+        </div>
+        <div class="gallery-item">
+          <img src="images/rose-quartz-petals.png" alt="Rose Quartz Petals — cream Ragdoll with iridescent petal gems in warm light" loading="lazy">
+          <div class="gallery-overlay">
+            <p class="gallery-overlay-gem">✦ Rose Quartz</p>
+            <p class="gallery-overlay-name">Rose Quartz Petals</p>
+            <p class="gallery-overlay-personality">Everything she touches blooms. She's noticed.</p>
+          </div>
+        </div>
+        <div class="gallery-item">
+          <img src="images/rose-quartz-wings.png" alt="Rose Quartz Wings — cream Birman with fairy wings in flower garden" loading="lazy">
+          <div class="gallery-overlay">
+            <p class="gallery-overlay-gem">✦ Rose Quartz</p>
+            <p class="gallery-overlay-name">Rose Quartz Wings</p>
+            <p class="gallery-overlay-personality">Wings optional. Magic not.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="court-section" id="ruby-court">
+    <div class="container">
+      <div class="court-header">
+        <span class="court-gem-dot" style="background:#c0392b"></span>
+        <h2 class="court-title">Ruby Court</h2>
+        <span class="court-count">3 pieces</span>
+      </div>
+      <div class="gallery-grid">
+        <div class="gallery-item">
+          <img src="images/ruby-throne.png" alt="Ruby Throne — orange Maine Coon on velvet throne with Queen of Hearts card" loading="lazy">
+          <div class="gallery-overlay">
+            <p class="gallery-overlay-gem">✦ Ruby</p>
+            <p class="gallery-overlay-name">Ruby Throne</p>
+            <p class="gallery-overlay-personality">The cards were already in her favor. She played anyway.</p>
+          </div>
+        </div>
+        <div class="gallery-item">
+          <img src="images/ruby-ballroom.png" alt="Ruby Ballroom — dark red Persian walking through crimson ballroom" loading="lazy">
+          <div class="gallery-overlay">
+            <p class="gallery-overlay-gem">✦ Ruby</p>
+            <p class="gallery-overlay-name">Ruby Ballroom</p>
+            <p class="gallery-overlay-personality">The red is hers. All of it.</p>
+          </div>
+        </div>
+        <div class="gallery-item">
+          <img src="images/ruby-velvet.png" alt="Ruby Velvet — white fluffy cat on red velvet chair with ruby crown" loading="lazy">
+          <div class="gallery-overlay">
+            <p class="gallery-overlay-gem">✦ Ruby</p>
+            <p class="gallery-overlay-name">Ruby Velvet</p>
+            <p class="gallery-overlay-personality">Soft chair. Hard eyes. Clear hierarchy.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="court-section" id="garnet-court">
+    <div class="container">
+      <div class="court-header">
+        <span class="court-gem-dot" style="background:#922b21"></span>
+        <h2 class="court-title">Garnet Court</h2>
+        <span class="court-count">3 pieces</span>
+      </div>
+      <div class="gallery-grid">
+        <div class="gallery-item">
+          <img src="images/garnet-phoenix.png" alt="Garnet Phoenix — golden cat with blazing fire wings under solar eclipse" loading="lazy">
+          <div class="gallery-overlay">
+            <p class="gallery-overlay-gem">✦ Garnet</p>
+            <p class="gallery-overlay-name">Garnet Phoenix</p>
+            <p class="gallery-overlay-personality">Burns down. Always comes back. Every time.</p>
+          </div>
+        </div>
+        <div class="gallery-item">
+          <img src="images/garnet-lava.png" alt="Garnet Lava — orange cat raising paw with red gems over volcanic lava" loading="lazy">
+          <div class="gallery-overlay">
+            <p class="gallery-overlay-gem">✦ Garnet</p>
+            <p class="gallery-overlay-name">Garnet Lava</p>
+            <p class="gallery-overlay-personality">Everything beneath her surface is fire.</p>
+          </div>
+        </div>
+        <div class="gallery-item">
+          <img src="images/garnet-golden.png" alt="Garnet Golden — golden Maine Coon with deep amber gems in golden temple" loading="lazy">
+          <div class="gallery-overlay">
+            <p class="gallery-overlay-gem">✦ Garnet</p>
+            <p class="gallery-overlay-name">Garnet Golden</p>
+            <p class="gallery-overlay-personality">More gold than garnet. More fire than both.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="court-section" id="aquamarine-court">
+    <div class="container">
+      <div class="court-header">
+        <span class="court-gem-dot" style="background:#1abc9c"></span>
+        <h2 class="court-title">Aquamarine Court</h2>
+        <span class="court-count">4 pieces</span>
+      </div>
+      <div class="gallery-grid">
+        <div class="gallery-item">
+          <img src="images/aquamarine-shore.png" alt="Aquamarine Shore — white cat with teal gems walking on rocky seashore" loading="lazy">
+          <div class="gallery-overlay">
+            <p class="gallery-overlay-gem">✦ Aquamarine</p>
+            <p class="gallery-overlay-name">Aquamarine Shore</p>
+            <p class="gallery-overlay-personality">Belongs to the edge. Where land gives up and water takes over.</p>
+          </div>
+        </div>
+        <div class="gallery-item">
+          <img src="images/aquamarine-beach.png" alt="Aquamarine Beach — grey tabby with aquamarine pendant on tropical beach" loading="lazy">
+          <div class="gallery-overlay">
+            <p class="gallery-overlay-gem">✦ Aquamarine</p>
+            <p class="gallery-overlay-name">Aquamarine Beach</p>
+            <p class="gallery-overlay-personality">Warm sand. Cool gem. Perfect tension.</p>
+          </div>
+        </div>
+        <div class="gallery-item">
+          <img src="images/aquamarine-window.png" alt="Aquamarine Window — grey tabby with aquamarine gems in warm golden light" loading="lazy">
+          <div class="gallery-overlay">
+            <p class="gallery-overlay-gem">✦ Aquamarine</p>
+            <p class="gallery-overlay-name">Aquamarine Window</p>
+            <p class="gallery-overlay-personality">Watching something outside the frame. Unbothered either way.</p>
+          </div>
+        </div>
+        <div class="gallery-item">
+          <img src="images/aquamarine-golden.png" alt="Aquamarine Golden — brown tabby with aquamarine center gem in rich interior" loading="lazy">
+          <div class="gallery-overlay">
+            <p class="gallery-overlay-gem">✦ Aquamarine</p>
+            <p class="gallery-overlay-name">Aquamarine Golden</p>
+            <p class="gallery-overlay-personality">One blue stone in all that gold. It's the one you look at.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="court-section" id="obsidian-court">
+    <div class="container">
+      <div class="court-header">
+        <span class="court-gem-dot" style="background:#2c2c2c"></span>
+        <h2 class="court-title">Obsidian Court</h2>
+        <span class="court-count">4 pieces</span>
+      </div>
+      <div class="gallery-grid">
+        <div class="gallery-item">
+          <img src="images/obsidian-shadow.png" alt="Obsidian Shadow — black cat with red eyes stalking through dark temple" loading="lazy">
+          <div class="gallery-overlay">
+            <p class="gallery-overlay-gem">✦ Obsidian</p>
+            <p class="gallery-overlay-name">Obsidian Shadow</p>
+            <p class="gallery-overlay-personality">You won't see her coming. That's the plan.</p>
+          </div>
+        </div>
+        <div class="gallery-item">
+          <img src="images/obsidian-sanctum.png" alt="Obsidian Sanctum — sleek black cat in candlelit obsidian chamber" loading="lazy">
+          <div class="gallery-overlay">
+            <p class="gallery-overlay-gem">✦ Obsidian</p>
+            <p class="gallery-overlay-name">Obsidian Sanctum</p>
+            <p class="gallery-overlay-personality">Candles not for light. For atmosphere.</p>
+          </div>
+        </div>
+        <div class="gallery-item">
+          <img src="images/obsidian-neon.png" alt="Obsidian Neon — black galaxy cat in cyberpunk neon city" loading="lazy">
+          <div class="gallery-overlay">
+            <p class="gallery-overlay-gem">✦ Obsidian</p>
+            <p class="gallery-overlay-name">Obsidian Neon</p>
+            <p class="gallery-overlay-personality">The future is dark. She's fine with that.</p>
+          </div>
+        </div>
+        <div class="gallery-item">
+          <img src="images/obsidian-emerald.png" alt="Obsidian Emerald — black cat with glowing green eyes in crystal cave" loading="lazy">
+          <div class="gallery-overlay">
+            <p class="gallery-overlay-gem">✦ Obsidian</p>
+            <p class="gallery-overlay-name">Obsidian Emerald</p>
+            <p class="gallery-overlay-personality">Green eyes in the dark. That's all the warning you get.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="court-section" id="pearl-court">
+    <div class="container">
+      <div class="court-header">
+        <span class="court-gem-dot" style="background:#f0ead6"></span>
+        <h2 class="court-title">Pearl Court</h2>
+        <span class="court-count">3 pieces</span>
+      </div>
+      <div class="gallery-grid">
+        <div class="gallery-item">
+          <img src="images/moonlit-pearl.png" alt="Moonlit Pearl — blue-grey cat on moonlit beach with moonstone crown" loading="lazy">
+          <div class="gallery-overlay">
+            <p class="gallery-overlay-gem">✦ Pearl</p>
+            <p class="gallery-overlay-name">Moonlit Pearl</p>
+            <p class="gallery-overlay-personality">Knows things she shouldn't. Never says how.</p>
+          </div>
+        </div>
+        <div class="gallery-item">
+          <img src="images/pearl-moonshore.png" alt="Pearl Moonshore — grey Russian Blue on moonlit rocky beach with pearl crown" loading="lazy">
+          <div class="gallery-overlay">
+            <p class="gallery-overlay-gem">✦ Pearl</p>
+            <p class="gallery-overlay-name">Pearl Moonshore</p>
+            <p class="gallery-overlay-personality">The ocean tells her things. She keeps them.</p>
+          </div>
+        </div>
+        <div class="gallery-item">
+          <img src="images/pearl-rose.png" alt="Pearl Rose — cream Persian with pearl and pink gem crown in rose garden" loading="lazy">
+          <div class="gallery-overlay">
+            <p class="gallery-overlay-gem">✦ Pearl</p>
+            <p class="gallery-overlay-name">Pearl Rose</p>
+            <p class="gallery-overlay-personality">Gentle isn't weak. She'll explain this once.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="court-section" id="moonstone-court">
+    <div class="container">
+      <div class="court-header">
+        <span class="court-gem-dot" style="background:#8e9eab"></span>
+        <h2 class="court-title">Moonstone Court</h2>
+        <span class="court-count">4 pieces</span>
+      </div>
+      <div class="gallery-grid">
+        <div class="gallery-item">
+          <img src="images/cosmic-moon.png" alt="Cosmic Moon — grey cat walking on the moon with galaxy necklace" loading="lazy">
+          <div class="gallery-overlay">
+            <p class="gallery-overlay-gem">✦ Moonstone</p>
+            <p class="gallery-overlay-name">Cosmic Moon</p>
+            <p class="gallery-overlay-personality">Between here and unreachable. Both, somehow.</p>
+          </div>
+        </div>
+        <div class="gallery-item">
+          <img src="images/moonstone-astral.png" alt="Moonstone Astral — dark Norwegian Forest Cat with galaxy and astronomical instruments" loading="lazy">
+          <div class="gallery-overlay">
+            <p class="gallery-overlay-gem">✦ Moonstone</p>
+            <p class="gallery-overlay-name">Moonstone Astral</p>
+            <p class="gallery-overlay-personality">Reads the stars. The stars take notes.</p>
+          </div>
+        </div>
+        <div class="gallery-item">
+          <img src="images/moonstone-eclipse.png" alt="Moonstone Eclipse — black cat with glowing blue eyes under lunar eclipse" loading="lazy">
+          <div class="gallery-overlay">
+            <p class="gallery-overlay-gem">✦ Moonstone</p>
+            <p class="gallery-overlay-name">Moonstone Eclipse</p>
+            <p class="gallery-overlay-personality">Rarest thing in the sky. Also here, apparently.</p>
+          </div>
+        </div>
+        <div class="gallery-item">
+          <img src="images/moonstone-kitten.png" alt="Moonstone Kitten — grey kitten with crescent moon crown on crystal rocks" loading="lazy">
+          <div class="gallery-overlay">
+            <p class="gallery-overlay-gem">✦ Moonstone</p>
+            <p class="gallery-overlay-name">Moonstone Kitten</p>
+            <p class="gallery-overlay-personality">Small. New moon energy. Watch this space.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="court-section" id="peridot-court">
+    <div class="container">
+      <div class="court-header">
+        <span class="court-gem-dot" style="background:#a8d8a8"></span>
+        <h2 class="court-title">Peridot Court</h2>
+        <span class="court-count">1 piece</span>
+      </div>
+      <div class="gallery-grid">
+        <div class="gallery-item">
+          <img src="images/peridot-garden.png" alt="Peridot Garden — brown Maine Coon with peridot crown in formal garden with fountain" loading="lazy">
+          <div class="gallery-overlay">
+            <p class="gallery-overlay-gem">✦ Peridot</p>
+            <p class="gallery-overlay-name">Peridot Garden</p>
+            <p class="gallery-overlay-personality">The garden does what she says. The fountain too.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="court-section" id="amethyst-court">
+    <div class="container">
+      <div class="court-header">
+        <span class="court-gem-dot" style="background:#9b59b6"></span>
+        <h2 class="court-title">Amethyst Court</h2>
+        <span class="court-count">2 pieces</span>
+      </div>
+      <div class="gallery-grid">
+        <div class="gallery-item">
+          <img src="images/amethyst-storm.png" alt="Amethyst Storm — grey cat with amethyst horns charging through purple space" loading="lazy">
+          <div class="gallery-overlay">
+            <p class="gallery-overlay-gem">✦ Amethyst</p>
+            <p class="gallery-overlay-name">Amethyst Storm</p>
+            <p class="gallery-overlay-personality">Arrived like a signal from somewhere else.</p>
+          </div>
+        </div>
+        <div class="gallery-item">
+          <img src="images/amethyst-cosmos.png" alt="Amethyst Cosmos — grey cat floating through purple cosmic clouds with amethyst gems" loading="lazy">
+          <div class="gallery-overlay">
+            <p class="gallery-overlay-gem">✦ Amethyst</p>
+            <p class="gallery-overlay-name">Amethyst Cosmos</p>
+            <p class="gallery-overlay-personality">Not falling. Drifting. Totally intentional.</p>
+          </div>
+        </div>
       </div>
     </div>
   </section>
@@ -132,7 +836,7 @@
   <!-- Follow CTA -->
   <section class="social-section" style="padding-top: 0;">
     <div class="container">
-      <h2>More queens every week</h2>
+      <h2>More courts every week</h2>
       <p>Follow on social for new gem royalty — plus behind-the-scenes looks at the crystal palace.</p>
       <div class="social-links">
         <a href="https://www.facebook.com/people/Crystal-Kitty-Club/61579552474277/" target="_blank" rel="noopener" class="social-link">
