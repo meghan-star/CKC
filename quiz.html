@@ -5,14 +5,14 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Find Your Familiar — Crystal Kitty Club</title>
   <meta name="description" content="Which gem queen claims you? Eight questions. One crystal familiar. She's already been decided.">
-  <link rel="canonical" href="https://crystalkittyclub.com/quiz.html">
+  <link rel="canonical" href="https://crystalkittyclub.com/quiz">
   <link rel="icon" type="image/x-icon" href="favicon.ico">
   <link rel="icon" type="image/png" sizes="32x32" href="favicon-32.png">
   <link rel="icon" type="image/png" sizes="64x64" href="favicon-64.png">
   <meta property="og:title" content="Find Your Familiar — Crystal Kitty Club">
   <meta property="og:description" content="Which gem queen claims you? Eight questions. One crystal familiar. She's already been decided.">
   <meta property="og:image" content="https://crystalkittyclub.com/images/crystal-throne.png">
-  <meta property="og:url" content="https://crystalkittyclub.com/quiz.html">
+  <meta property="og:url" content="https://crystalkittyclub.com/quiz">
   <!-- Google tag (gtag.js) -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-GCRT8LR4WW"></script>
   <script>
@@ -439,9 +439,9 @@
     <div class="nav-inner">
       <a href="/" class="nav-logo"><img src="ckc-shield.png" alt="Crystal Kitty Club" class="nav-logo-img">Crystal Kitty Club</a>
       <ul class="nav-links">
-        <li><a href="gallery.html">Gallery</a></li>
-        <li><a href="quiz.html" class="nav-cta">Find Your Familiar</a></li>
-        <li><a href="wallpapers.html">Wallpapers</a></li>
+        <li><a href="/gallery">Gallery</a></li>
+        <li><a href="/quiz" class="nav-cta">Find Your Familiar</a></li>
+        <li><a href="/wallpapers">Wallpapers</a></li>
       </ul>
       <div class="nav-social">
         <a href="https://www.facebook.com/people/Crystal-Kitty-Club/61579552474277/" target="_blank" rel="noopener" aria-label="Facebook">
@@ -542,9 +542,9 @@
     <div class="container">
       <div class="footer-logo"><img src="ckc-logo-footer.png" alt="Crystal Kitty Club"><span>Crystal Kitty Club</span></div>
       <nav class="footer-nav">
-        <a href="index.html">Home</a>
-        <a href="gallery.html">Gallery</a>
-        <a href="wallpapers.html">Wallpapers</a>
+        <a href="/">Home</a>
+        <a href="/gallery">Gallery</a>
+        <a href="/wallpapers">Wallpapers</a>
       </nav>
       <p class="footer-copy">&copy; 2026 Crystal Kitty Club. All rights reserved.</p>
     </div>
@@ -945,7 +945,7 @@
               aquamarine: 'aquamarine', moonstone: 'moonstone'
             };
             var slug = slugMap[state.primaryQueen] || state.primaryQueen;
-            window.location.href = 'result-' + slug + '.html';
+            window.location.href = '/result-' + slug;
           }, 1800);
         }, 1100);
       }, 1800);
@@ -991,7 +991,7 @@
       };
       var queen = queens[state.primaryQueen];
       var slug = slugMap[state.primaryQueen] || state.primaryQueen;
-      var url = 'https://crystalkittyclub.com/result-' + slug + '.html';
+      var url = 'https://crystalkittyclub.com/result-' + slug;
       var text = 'I got ' + queen.name + ' — ' + queen.closing + '\n\nWhich gem queen claims you?';
       var isMobile = ('ontouchstart' in window) || (navigator.maxTouchPoints > 0);
       if (isMobile && navigator.share) {
